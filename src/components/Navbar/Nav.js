@@ -1,6 +1,8 @@
-function Nav() {
+import styles from './Navbar.module.css'
+
+const Nav = () => {
    return (
-      <nav className='nav'>
+      <nav className={`${styles.nav} ${styles.back}`}>
          <ul>
             <li><a href='#'>Profile</a></li>
             <li><a href='#'>Messages</a></li>

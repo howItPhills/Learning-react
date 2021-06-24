@@ -1,0 +1,36 @@
+ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+.nav {
+   border-radius: 10px;
+   padding: 10px;
+   grid-area: n;
+}
+
+.nav.back {
+   background: blue;
+}
+
+.nav li a {
+   text-decoration: none;
+   text-transform: uppercase;
+   color: aquamarine;
+}
+.nav li a:hover {
+   text-decoration: underline;
+}
+
+.nav li:not(:nth-child(5)) {
+   margin-bottom: 15px;
+}
+
+.nav li:last-child {
+   margin-top: 50px;
+}
+
+.nav.active li {
+   color: gold;
+}
