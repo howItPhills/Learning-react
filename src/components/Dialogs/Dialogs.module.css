@@ -1,3 +1,12 @@
-.div {
-   font-size: 30px;
+.dialogs {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: 1fr;
+}
+.dialogsItems {
+   padding: 10px 0px 0px 10px;
+}
+
+.messages {
+   place-self: start center;
 }

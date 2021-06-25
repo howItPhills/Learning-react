@@ -1,0 +1,11 @@
+.dialog:not(:last-child) {
+   margin-bottom: 30px;
+}
+
+.dialog a {
+   text-decoration: none;
+   text-transform: uppercase;
+   color: rgb(38, 136, 103);
+   font-weight: bold;
+   font-size: 15px;
+}

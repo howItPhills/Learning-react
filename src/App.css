@@ -3,7 +3,7 @@
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
-  grid-template-rows: 1fr 3fr;
+  grid-template-rows: 1fr;
   grid-template-columns: 1fr 4.5fr;
 
   grid-template-areas:
@@ -12,6 +12,7 @@
 }
 
 .app-wrapper-content {
-  background: rgb(156, 20, 20);
+  background: rgb(218, 247, 247);
   grid-area: c;
+  border-radius: 10px;
 }
