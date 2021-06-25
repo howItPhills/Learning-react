@@ -5,12 +5,14 @@ import Post from './Post/Post';
 
 const MyPosts = () => {
    return (
-      <div>
-         <div>
-            My posts
-         </div>
+      <div className={styles.wrapper}>
+         <h3 className={styles.activities}>
+            My activity
+         </h3>
          <NewPost />
-         <Post message="how are u?" likes="21" />
+         <Post message="the weather is so hawt oh ma gawd" likes="21" />
+         <Post message="hello" likes="30" />
+         <Post message="hello" likes="30" />
          <Post message="hello" likes="30" />
       </div>
    )

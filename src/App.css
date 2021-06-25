@@ -16,3 +16,7 @@
   grid-area: c;
   border-radius: 10px;
 }
+
+.nav {
+  max-height: 290px;
+}

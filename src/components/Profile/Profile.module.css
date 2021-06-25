@@ -3,3 +3,8 @@
    height: 150px;
    object-fit: 50% 50%;
 }
+
+.content {
+   display: grid;
+   grid-template: 1fr / 1fr 1.5fr;
+}

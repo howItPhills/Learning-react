@@ -1,0 +1,19 @@
+.wrapper {
+   justify-self: center;
+   text-align: center;
+   width: 100%;
+}
+
+h3 {
+   margin: 0;
+   padding: 0;
+   border-bottom: 2px solid rgb(193, 238, 189);
+}
+
+.activities {
+   font-size: 30px;
+   font-style: italic;
+   text-transform: uppercase;
+   margin-bottom: 30px;
+   color: rgb(76, 92, 76);
+}

@@ -15,7 +15,9 @@ function App() {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Nav />
+        <div className='nav'>
+          <Nav />
+        </div>
         <div className='app-wrapper-content'>
           <Route path='/dialogs' component={Dialogs} />
           <Route path='/profile' component={Profile} />
