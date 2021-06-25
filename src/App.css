@@ -10,3 +10,8 @@
     "h h"
     "n c";
 }
+
+.app-wrapper-content {
+  background: rgb(156, 20, 20);
+  grid-area: c;
+}
