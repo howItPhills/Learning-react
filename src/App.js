@@ -13,7 +13,7 @@ const App = (props) => {
       <div className='app-wrapper'>
         <Header />
         <Nav />
-        <Content messages={props.messages} dialogs={props.dialogs} posts={props.posts} />
+        <Content state={props.state} />
       </div>
     </BrowserRouter>
   );
