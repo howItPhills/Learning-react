@@ -4,16 +4,24 @@ import Post from './Post/Post';
 
 
 const MyPosts = () => {
+
+   let posts = [
+      { id: '1', message: 'Hello', likesCount: '21' },
+      { id: '2', message: 'The weather is so hot', likesCount: '3' },
+      { id: '3', message: 'How are u doin guys', likesCount: '1' },
+      { id: '4', message: 'Privet', likesCount: '15' },
+   ];
+
+   let postsElements =
+      posts.map(p => <Post message={p.message} likes={p.likesCount} />)
+
    return (
       <div className={styles.wrapper}>
          <h3 className={styles.activities}>
             My activity
          </h3>
          <NewPost />
-         <Post message="the weather is so hawt oh ma gawd" likes="21" />
-         <Post message="hello" likes="30" />
-         <Post message="hello" likes="30" />
-         <Post message="hello" likes="30" />
+         {postsElements}
       </div>
    )
 }
