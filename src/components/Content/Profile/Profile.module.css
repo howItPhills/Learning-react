@@ -7,5 +7,5 @@
 .content {
    display: grid;
    height: 100%;
-   grid-template: 1fr/ 1fr 1.4fr;
+   grid-template: 1fr/ 1fr 1.8fr;
 }
