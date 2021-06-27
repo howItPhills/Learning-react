@@ -1,0 +1,19 @@
+.friends {
+   margin-top: 40px;
+}
+
+.title {
+   color: rgb(70, 112, 98);
+   margin-bottom: 20px;
+}
+.wrapper {
+   background: #fff;
+   padding: 10px 0px 10px 20px;
+   border-radius: 10px;
+   width: 85%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 22px;
+   flex-wrap: wrap;
+}
