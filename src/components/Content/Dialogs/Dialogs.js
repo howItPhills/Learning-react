@@ -1,7 +1,15 @@
+import React from 'react';
 import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 
+
+const messageElement = React.createRef();
+
+const message = () => {
+   let Message = messageElement.current.value;
+   alert(Message);
+}
 
 
 const Dialogs = (props) => {
@@ -19,6 +27,8 @@ const Dialogs = (props) => {
          <div className={styles.messages}>
             {messagesElement}
          </div>
+         <input placeholder="Message" ref={messageElement} />
+         <button onClick={message}>Send</button>
       </div>
 
    )
