@@ -6,13 +6,18 @@ import Message from './Message/Message';
 
 const messageElement = React.createRef();
 
-const message = () => {
-   let Message = messageElement.current.value;
-   alert(Message);
-}
-
 
 const Dialogs = (props) => {
+
+   let sendMessage = () => {
+      props.addMessage();
+   }
+
+   let changeMessage = () => {
+      let messageText = messageElement.current.value;
+      props.addNewMessageText(messageText)
+   }
+
    let dialogsElement =
       props.dialogsPage.dialogs.map(d => <Dialog name={d.name} id={d.id} />);
 
@@ -27,8 +32,8 @@ const Dialogs = (props) => {
          <div className={styles.messages}>
             {messagesElement}
          </div>
-         <input placeholder="Message" ref={messageElement} />
-         <button onClick={message}>Send</button>
+         <input value={props.dialogsPage.valueMessage} onChange={changeMessage} ref={messageElement} />
+         <button onClick={sendMessage}>Send</button>
       </div>
 
    )

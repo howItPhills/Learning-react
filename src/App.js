@@ -11,7 +11,7 @@ const App = (props) => {
     <div className='app-wrapper'>
       <Header />
       <Nav />
-      <Content state={props.state} addPost={props.addPost} />
+      <Content state={props.state} addMessage={props.addMessage} addPost={props.addPost} addText={props.addText} addNewMessageText={props.addNewMessageText} />
     </div>
   );
 }

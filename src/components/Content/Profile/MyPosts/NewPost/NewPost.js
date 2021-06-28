@@ -7,18 +7,17 @@ let newPostRef = React.createRef();
 
 const NewPost = (props) => {
    let hi = () => {
-      let post = newPostRef.current.value;
-      props.addPost(post);
-      newPostRef.current.value = "";
+      props.addPost();
    }
 
    let onPostChange = () => {
-
+      let text = newPostRef.current.value;
+      props.addText(text);
    };
 
    return (
       <div className={styles.wrapper}>
-         <input placeholder='Send your message...' ref={newPostRef} value={props.newPostText} onChange={onPostChange} />
+         <input ref={newPostRef} value={props.newPostText} onChange={onPostChange} />
          <button className={styles.button} onClick={hi}>Send</button>
       </div>
    )

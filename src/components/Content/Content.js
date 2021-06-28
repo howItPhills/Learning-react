@@ -8,10 +8,11 @@ import { Route } from 'react-router-dom';
 
 
 const Content = (props) => {
+  console.log(props);
   return (
     <div className='app-wrapper-content'>
-      <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} />} />
-      <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} />} />
+      <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} addNewMessageText={props.addNewMessageText} addMessage={props.addMessage} />} />
+      <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} addText={props.addText} />} />
       <Route path='/news' component={News} />
       <Route path='/music' component={Music} />
       <Route path='/videos' component={Videos} />
