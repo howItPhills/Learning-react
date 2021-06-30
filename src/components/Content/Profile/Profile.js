@@ -7,6 +7,7 @@ import Description from './Description/Description.js';
 
 
 const Profile = (props) => {
+   // debugger;
    return (
       <div className={styles.content}>
          <Description friends={props.profilePage.friends} />
