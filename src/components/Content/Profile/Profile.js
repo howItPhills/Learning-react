@@ -11,7 +11,7 @@ const Profile = (props) => {
    return (
       <div className={styles.content}>
          <Description friends={props.profilePage.friends} />
-         <MyPosts posts={props.profilePage.posts} addPost={props.addPost} newPostText={props.profilePage.newPostText} addText={props.addText} />
+         <MyPosts posts={props.profilePage.posts} dispatch={props.dispatch} newPostText={props.profilePage.newPostText} />
       </div>
    )
 }

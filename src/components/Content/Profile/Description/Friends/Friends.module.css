@@ -1,12 +1,11 @@
 .friends {
    background: #fff;
-   padding: 10px 0px 10px 20px;
+   padding: 10px;
    border-radius: 10px;
    width: 89%;
    display: flex;
-   justify-content: flex-start;
+   justify-content: space-between;
    align-items: center;
-   gap: 22px;
    flex-wrap: wrap;
 }
 

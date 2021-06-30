@@ -1,3 +1,8 @@
+const ADDMESSAGE = 'ADD-MESSAGE';
+const ADDNEWMESSAGETEXT = 'ADD-NEW-MESSAGE-TEXT';
+const ADDPOST = 'ADD-POST';
+const ADDPOSTTEXT = 'ADD-POST-TEXT';
+
 let store = {
    _state: {
       dialogsPage: {
@@ -30,13 +35,17 @@ let store = {
          newPostText: "Hi vasaaaa",
       },
    },
+   _rerenderEntireTree() {
+   },
+
    getState() {
       return this._state;
    },
-   _rerenderEntireTree() {
+   subscribe(observer) {
+      this._rerenderEntireTree = observer;
    },
-   addPost() {
-      debugger;
+
+   _addPost() {
       let newPost = {
          id: 5,
          message: this._state.profilePage.newPostText,
@@ -46,7 +55,7 @@ let store = {
       this._state.profilePage.newPostText = '';
       this._rerenderEntireTree(this._state);
    },
-   addMessage() {
+   _addMessage() {
       let newMessage = {
          id: 5,
          message: this._state.dialogsPage.valueMessage,
@@ -55,17 +64,32 @@ let store = {
       this._state.dialogsPage.valueMessage = '';
       this._rerenderEntireTree(this._state);
    },
-   addText(text) {
+   _addPostText(text) {
       this._state.profilePage.newPostText = text;
       this._rerenderEntireTree(this._state);
    },
-   addNewMessageText(text) {
+   _addNewMessageText(text) {
       this._state.dialogsPage.valueMessage = text;
       this._rerenderEntireTree(this._state);
    },
-   subcribe(observer) {
-      this._rerenderEntireTree = observer;
-   },
-}
+   dispatch(action) {
+      if (action.type === ADDPOST) {
+         this._addPost();
+      } else if (action.type === ADDMESSAGE) {
+         this._addMessage();
+      } else if (action.type === ADDPOSTTEXT) {
+         this._addPostText(action.text)
+      } else if (action.type === ADDNEWMESSAGETEXT) {
+         this._addNewMessageText(action.text)
+      }
+   }
+};
+
+export const addMessageActionCreator = () => ({ type: 'ADD-MESSAGE' });
+export const addMessageTextActionCreator = (messageText) => ({ type: 'ADD-NEW-MESSAGE-TEXT', text: messageText });
+
+export const addPostActionCreator = () => ({ type: 'ADD-POST' });
+export const addPostTextActionCreator = (postText) => ({ type: 'ADD-POST-TEXT', text: postText });
+
 
 export default store;

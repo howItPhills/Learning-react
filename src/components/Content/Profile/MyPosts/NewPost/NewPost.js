@@ -1,24 +1,29 @@
 import React from 'react';
+import { addPostActionCreator, addPostTextActionCreator } from '../../../../../redux/State';
 import styles from './NewPost.module.css';
 
 
-let newPostRef = React.createRef();
+
+
 
 
 const NewPost = (props) => {
-   let hi = () => {
-      props.addPost();
+
+   let newPostRef = React.createRef();
+
+   let addPost = () => {
+      props.dispatch(addPostActionCreator());
    }
 
-   let onPostChange = () => {
-      let text = newPostRef.current.value;
-      props.addText(text);
+   let onPostTextChange = () => {
+      let postText = newPostRef.current.value;
+      props.dispatch(addPostTextActionCreator(postText));
    };
 
    return (
       <div className={styles.wrapper}>
-         <input ref={newPostRef} value={props.newPostText} onChange={onPostChange} />
-         <button className={styles.button} onClick={hi}>Send</button>
+         <input ref={newPostRef} value={props.newPostText} onChange={onPostTextChange} />
+         <button className={styles.button} onClick={addPost}>Send</button>
       </div>
    )
 }

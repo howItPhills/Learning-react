@@ -2,20 +2,22 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
+import { addMessageActionCreator, addMessageTextActionCreator } from '../../../redux/State';
 
-
-const messageElement = React.createRef();
 
 
 const Dialogs = (props) => {
 
+   const messageElement = React.createRef();
+
+
    let sendMessage = () => {
-      props.addMessage();
+      props.dispatch(addMessageActionCreator());
    }
 
    let changeMessage = () => {
       let messageText = messageElement.current.value;
-      props.addNewMessageText(messageText)
+      props.dispatch(addMessageTextActionCreator(messageText))
    }
 
    let dialogsElement =
@@ -32,8 +34,8 @@ const Dialogs = (props) => {
          <div className={styles.messages}>
             {messagesElement}
          </div>
-         <input value={props.dialogsPage.valueMessage} onChange={changeMessage} ref={messageElement} />
-         <button onClick={sendMessage}>Send</button>
+         <input value={props.dialogsPage.valueMessage} onChange={changeMessage} ref={messageElement} className={styles.input} />
+         <button onClick={sendMessage} className={styles.button}>Send</button>
       </div>
 
    )

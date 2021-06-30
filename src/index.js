@@ -7,20 +7,20 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 
-let render = () => {
+let render = (state) => {
    ReactDOM.render(
       <React.StrictMode>
          <BrowserRouter>
-            <App store={store} />
+            <App state={state} dispatch={store.dispatch.bind(store)} />
          </BrowserRouter>
       </React.StrictMode>,
       document.getElementById('root')
    );
 }
 
-render();
+render(store.getState());
 
-store.subcribe(render)
+store.subscribe(render)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

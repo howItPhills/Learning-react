@@ -10,3 +10,17 @@
 .messages {
    place-self: start center;
 }
+
+.input {
+   grid-column-start: 2;
+   width: 80%;
+   place-self: start center;
+   margin-bottom: 10px;
+}
+
+.button {
+   grid-column-start: 2;
+   width: 20%;
+   place-self: center end;
+   margin-right: 40px;
+}
