@@ -1,4 +1,4 @@
-import Dialogs from './Dialogs/Dialogs';
+import DialogsContainer from './Dialogs/DialogsContainer'
 import News from './News/News';
 import Videos from './Videos/Videos';
 import Settings from './Settings/Settings';
@@ -12,8 +12,8 @@ const Content = (props) => {
 
   return (
     <div className='app-wrapper-content'>
-      <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />} />
-      <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />} />
+      <Route path='/dialogs' render={() => <DialogsContainer store={props.store} />} />
+      <Route path='/profile' render={() => <Profile store={props.store} />} />
       <Route path='/news' component={News} />
       <Route path='/music' component={Music} />
       <Route path='/videos' component={Videos} />

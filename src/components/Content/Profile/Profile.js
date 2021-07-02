@@ -7,11 +7,10 @@ import Description from './Description/Description.js';
 
 
 const Profile = (props) => {
-   // debugger;
    return (
       <div className={styles.content}>
-         <Description friends={props.profilePage.friends} />
-         <MyPosts posts={props.profilePage.posts} dispatch={props.dispatch} newPostText={props.profilePage.newPostText} />
+         <Description friends={props.store.getState().profilePage.friends} />
+         <MyPosts store={props.store} posts={props.store.getState().profilePage.posts} />
       </div>
    )
 }

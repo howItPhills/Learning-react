@@ -1,5 +1,5 @@
 import styles from './MyPosts.module.css';
-import NewPost from './NewPost/NewPost';
+import NewPostContainer from './NewPost/NewPostContainer';
 import Post from './Post/Post';
 
 
@@ -12,7 +12,7 @@ const MyPosts = (props) => {
          <h3 className={styles.activities}>
             My activity
          </h3>
-         <NewPost dispatch={props.dispatch} newPostText={props.newPostText} />
+         <NewPostContainer store={props.store} />
          {postsElements}
       </div>
    )

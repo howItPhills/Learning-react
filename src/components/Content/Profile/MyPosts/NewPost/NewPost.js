@@ -8,12 +8,12 @@ import styles from './NewPost.module.css';
 const NewPost = (props) => {
 
    const addPost = () => {
-      props.dispatch(addPostActionCreator());
+      props.addPost();
    }
 
    const onPostTextChange = (e) => {
       const newPostText = e.target.value;
-      props.dispatch(addPostTextActionCreator(newPostText));
+      props.onPostTextChange(newPostText);
    };
 
    return (
