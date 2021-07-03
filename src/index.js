@@ -5,16 +5,16 @@ import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
 
 
 let render = () => {
    ReactDOM.render(
       <React.StrictMode>
          <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                <App />
-            </StoreContext.Provider>
+            </Provider>
          </BrowserRouter>
       </React.StrictMode>,
       document.getElementById('root')

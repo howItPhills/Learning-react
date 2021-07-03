@@ -1,5 +1,5 @@
 import styles from './Description.module.css';
-import Friends from './Friends/Friends'
+import FriendsContainer from './Friends/FriendsContainer';
 
 
 const Description = (props) => {
@@ -11,7 +11,7 @@ const Description = (props) => {
          <p>Current state: NYC</p>
          <p>Frontend Developer</p>
          <p>About me: love cats, hate haters </p>
-         <Friends friends={props.friends} />
+         <FriendsContainer />
       </div>
    )
 }

@@ -1,10 +1,10 @@
-import DialogsContainer from './Dialogs/DialogsContainer'
 import News from './News/News';
 import Videos from './Videos/Videos';
 import Settings from './Settings/Settings';
 import Music from './Music/Music';
 import Profile from './Profile/Profile';
 import { Route } from 'react-router-dom';
+import DialogsContainer from './Dialogs/DialogsContainer';
 
 
 const Content = () => {
