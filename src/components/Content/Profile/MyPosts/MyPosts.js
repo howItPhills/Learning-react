@@ -12,7 +12,7 @@ const MyPosts = (props) => {
          <h3 className={styles.activities}>
             My activity
          </h3>
-         <NewPostContainer store={props.store} />
+         <NewPostContainer />
          {postsElements}
       </div>
    )

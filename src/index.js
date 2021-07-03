@@ -5,13 +5,16 @@ import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import StoreContext from './StoreContext';
 
 
 let render = () => {
    ReactDOM.render(
       <React.StrictMode>
          <BrowserRouter>
-            <App store={store} />
+            <StoreContext.Provider value={store}>
+               <App />
+            </StoreContext.Provider>
          </BrowserRouter>
       </React.StrictMode>,
       document.getElementById('root')

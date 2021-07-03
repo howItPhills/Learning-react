@@ -9,7 +9,7 @@ const App = (props) => {
     <div className='app-wrapper'>
       <Header />
       <Nav />
-      <Content store={props.store} />
+      <Content />
     </div>
   );
 }
