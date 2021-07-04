@@ -24,16 +24,17 @@ export const profileReducer = (state = initialState, action) => {
             message: state.newPostText,
             likesCount: 0,
          }
-         let copyState = { ...state };
-         copyState.posts = [...state.posts]
-         copyState.posts.push(newPost);
-         copyState.newPostText = '';
-         return copyState;
+         return {
+            ...state,
+            posts: [...state.posts, newPost],
+            newPostText: '',
+         };
       }
       case ADDPOSTTEXT:
-         let copyState = { ...state };
-         copyState.newPostText = action.text;
-         return copyState;
+         return {
+            ...state,
+            newPostText: action.text
+         };
       default:
          return state;
    }
