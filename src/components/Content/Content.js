@@ -5,6 +5,7 @@ import Music from './Music/Music';
 import Profile from './Profile/Profile';
 import { Route } from 'react-router-dom';
 import DialogsContainer from './Dialogs/DialogsContainer';
+import FindUsersContainer from './FindUsers/FindUsersContainer';
 
 
 const Content = () => {
@@ -17,6 +18,7 @@ const Content = () => {
       <Route path='/music' component={Music} />
       <Route path='/videos' component={Videos} />
       <Route path='/settings' component={Settings} />
+      <Route path='/findusers' render={() => <FindUsersContainer />} />
     </div>
   );
 }

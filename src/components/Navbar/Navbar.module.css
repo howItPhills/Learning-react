@@ -32,6 +32,10 @@ ul {
    margin-bottom: 15px;
 }
 
+.nav li:nth-child(6) {
+   margin-top: 40px;
+}
+
 .nav li:last-child {
    margin-top: 50px;
 }

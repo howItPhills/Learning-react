@@ -1,0 +1,66 @@
+p,
+button {
+   margin: 0;
+   padding: 0;
+}
+
+.main {
+   margin: 0;
+   padding: 0 10px;
+}
+
+.user {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-right: 10px;
+   gap: 5px;
+}
+
+.user button {
+   all: unset;
+   cursor: pointer;
+   text-align: center;
+   border-radius: 5px;
+   text-transform: uppercase;
+   font-weight: bold;
+   color: rgb(255, 255, 255);
+   background: rgb(37, 124, 98);
+   padding: 2px;
+   font-size: 13px;
+}
+
+.wrapper {
+   width: 97.5%;
+   padding: 10px;
+   border-radius: 10px;
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.description {
+   display: flex;
+   width: 100%;
+   background: #fff;
+   padding: 20px;
+   border-radius: 10px;
+}
+
+.description div:nth-child(2) {
+   margin-right: auto;
+}
+
+.photo {
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
+.text {
+   font-weight: bold;
+   font-size: 15px;
+   color: rgb(56, 155, 114);
+   text-transform: uppercase;
+}
