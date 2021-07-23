@@ -28,7 +28,8 @@ export const findUsersReducer = (state = inintialState, action) => {
       }
       case 'SET_USERS': {
          return {
-            users: [...action.users],
+            ...state,
+            users: [...action.users]
          }
       }
       default:
