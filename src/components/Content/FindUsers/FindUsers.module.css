@@ -22,7 +22,8 @@ button {
    max-width: 50px;
 }
 
-.user button {
+.user button,
+.btn {
    all: unset;
    cursor: pointer;
    text-align: center;
@@ -71,4 +72,36 @@ button {
    font-size: 15px;
    color: rgb(56, 155, 114);
    text-transform: uppercase;
+}
+
+/* .btn {
+   display: block;
+   margin: 0 auto;
+   padding: 10px;
+   font-size: 20px;
+} */
+
+.pagination {
+   font-size: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+
+.pagination span {
+   cursor: pointer;
+   color: teal;
+   align-self: center;
+}
+.pagination span:not(:last-child) {
+   margin-right: 5px;
+}
+.pagination span:hover {
+   text-decoration: underline;
+}
+
+.selected {
+   font-weight: bold;
+   font-size: 23px;
 }

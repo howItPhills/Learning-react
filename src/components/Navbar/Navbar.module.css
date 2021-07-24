@@ -23,9 +23,12 @@ ul {
    font-weight: bold;
    color: aquamarine;
    padding: 5px;
+   transition: all 0.15s ease;
 }
 .nav a:hover {
-   text-decoration: underline;
+   color: rgb(24, 148, 107);
+   background: #fff;
+   border-radius: 5px;
 }
 
 .nav li:not(:nth-child(5)) {
@@ -43,7 +46,6 @@ ul {
 a.activeLink {
    color: rgb(24, 148, 107);
    background: #fff;
-   display: block;
    border-radius: 5px;
 }
 

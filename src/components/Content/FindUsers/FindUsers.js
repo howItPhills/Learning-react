@@ -4,15 +4,34 @@ import styles from './FindUsers.module.css'
 
 
 class FindUsers extends React.Component {
-   constructor(props) {
-      super(props);
-      axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-         this.props.setUsers(response.data.items)
-      });
+   componentDidMount() {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+         .then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount)
+         });
    }
+
+   onPageChanged = (pageNumber) => {
+      this.props.setCurrentPage(pageNumber);
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+         .then(response => {
+            this.props.setUsers(response.data.items);
+         });
+   }
+
    render() {
+
+      let pageAmount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+
+      let pages = [];
+
+      for (let i = 1; i <= pageAmount; i++) {
+         pages.push(i);
+      }
+
       return <div>
-         <h2 h2 className={styles.title} > Users to find, friends to meet</h2>
+         <h2 className={styles.title}>Users to find, friends to meet</h2>
          {
             this.props.users.map(u =>
                <div className={styles.main} key={u.id}>
@@ -30,6 +49,10 @@ class FindUsers extends React.Component {
                </div >
             )
          }
+         <div className={styles.pagination}>
+            {pages.map(p => <span className={this.props.currentPage === p && styles.selected} onClick={() => this.onPageChanged(p)}>{p}</span>)}
+
+         </div>
       </div >
    }
 }
