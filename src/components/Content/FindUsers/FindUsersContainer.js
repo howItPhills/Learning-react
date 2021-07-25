@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { addMoreUsersAC, followAC, increaseNewPageAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from '../../../redux/findUsersReducer';
+import { addMoreUsers, follow, increaseNewPage, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from '../../../redux/findUsersReducer';
 import FindUsers from './FindUsers';
 import * as axios from 'axios';
 import Preloader from '../../../common/preloader';
@@ -66,36 +66,45 @@ const mapStateToProps = (state) => {
    }
 }
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      follow: (userId) => {
-         dispatch(followAC(userId))
-      },
-      unfollow: (userId) => {
-         dispatch(unfollowAC(userId))
-      },
-      setUsers: (users) => {
-         dispatch(setUsersAC(users))
-      },
-      setCurrentPage: (currentPage) => {
-         dispatch(setCurrentPageAC(currentPage))
-      },
-      setTotalUsersCount: (totalUsersCount) => {
-         dispatch(setTotalUsersCountAC(totalUsersCount))
-      },
-      toggleIsFetching: (isFetching) => {
-         dispatch(toggleIsFetchingAC(isFetching))
-      },
-      // increaseNewPage: () => {
-      //    dispatch(increaseNewPageAC())
-      // },
-      // addMoreUsers: (newUsers) => {
-      //    dispatch(addMoreUsersAC(newUsers))
-      // },
-   }
-}
+// const mapDispatchToProps = (dispatch) => {
+//    return {
+//       follow: (userId) => {
+//          dispatch(followAC(userId))
+//       },
+//       unfollow: (userId) => {
+//          dispatch(unfollowAC(userId))
+//       },
+//       setUsers: (users) => {
+//          dispatch(setUsersAC(users))
+//       },
+//       setCurrentPage: (currentPage) => {
+//          dispatch(setCurrentPageAC(currentPage))
+//       },
+//       setTotalUsersCount: (totalUsersCount) => {
+//          dispatch(setTotalUsersCountAC(totalUsersCount))
+//       },
+//       toggleIsFetching: (isFetching) => {
+//          dispatch(toggleIsFetchingAC(isFetching))
+//       },
+//       // increaseNewPage: () => {
+//       //    dispatch(increaseNewPageAC())
+//       // },
+//       // addMoreUsers: (newUsers) => {
+//       //    dispatch(addMoreUsersAC(newUsers))
+//       // },
+//    }
+// }
 
 
-const FindUsersContainer = connect(mapStateToProps, mapDispatchToProps)(FindUsersAPI)
+const FindUsersContainer = connect(mapStateToProps, {
+   follow,
+   unfollow,
+   setUsers,
+   setCurrentPage,
+   setTotalUsersCount,
+   toggleIsFetching,
+   // increaseNewPage,
+   // addMoreUsers,
+})(FindUsersAPI)
 
 export default FindUsersContainer;
