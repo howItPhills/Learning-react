@@ -12,7 +12,7 @@ const MyPosts = (props) => {
 
    const onPostTextChange = (e) => {
       const newPostText = e.target.value;
-      props.onPostTextChange(newPostText);
+      props.addPostText(newPostText);
    };
 
    return (

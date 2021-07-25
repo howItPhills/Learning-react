@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styles from './FindUsers.module.css'
 
 
@@ -17,7 +18,9 @@ let FindUsers = (props) => {
             <div className={styles.main} key={u.id}>
                <div className={styles.wrapper}>
                   <div className={styles.user}>
-                     <img src={(u.photos.small === null) ? "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic.asianetnews.com%2Fimg%2Fdefault-user-avatar.png&f=1&nofb=1" : u.photos.small} className={styles.photo} />
+                     <NavLink to='/profile/2'>
+                        <img src={(u.photos.small === null) ? "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic.asianetnews.com%2Fimg%2Fdefault-user-avatar.png&f=1&nofb=1" : u.photos.small} className={styles.photo} />
+                     </NavLink>
                      {u.followed ?
                         <button onClick={() => { props.unfollow(u.id) }}>unfollow</button> :
                         <button onClick={() => { props.follow(u.id) }}>follow</button>}

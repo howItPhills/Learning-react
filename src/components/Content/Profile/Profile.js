@@ -1,14 +1,15 @@
 import styles from './Profile.module.css';
 import Description from './Description/Description.js';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import MyPosts from './MyPosts/MyPosts';
 
 
 
-const Profile = () => {
+const Profile = (props) => {
+   debugger;
    return (
       <div className={styles.content} >
          <Description />
-         <MyPostsContainer />
+         <MyPosts posts={props.posts} addPost={props.addPost} addPostText={props.addPostText} newPostText={props.newPostText} />
       </div >
    )
 }
