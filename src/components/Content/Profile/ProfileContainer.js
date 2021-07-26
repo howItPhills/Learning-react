@@ -1,21 +1,28 @@
+import * as axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPost, addPostText } from '../../../redux/profileReducer';
+import { withRouter } from 'react-router-dom';
+import { addPost, addPostText, setProfile } from '../../../redux/profileReducer';
 import Profile from './Profile';
 
 
 
 class ProfileContainer extends React.Component {
+
+   componentDidMount() {
+      let userId = this.props.match.params.userId;
+      if (!userId) {
+         userId = 2;
+      }
+      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+         .then(response => {
+            this.props.setProfile(response.data)
+         });
+   }
    render() {
-      return <>
-         <Profile
-            posts={this.props.posts}
-            friends={this.props.friends}
-            newPostText={this.props.newPostText}
-            addPost={this.props.addPost}
-            addPostText={this.props.addPostText}
-         />
-      </>
+      return (
+         <Profile {...this.props} />
+      )
    }
 }
 
@@ -24,20 +31,12 @@ const MapStateToProps = (state) => {
       posts: state.profilePage.posts,
       friends: state.profilePage.friends,
       newPostText: state.profilePage.newPostText,
+      profileInfo: state.profilePage.profileInfo,
    }
 }
-// const MapDispatchToProps = (dispatch) => {
-//    return {
-//       addPost() {
-//          dispatch(addPostActionCreator());
-//       },
-//       onPostTextChange(newPostText) {
-//          dispatch(addPostTextActionCreator(newPostText));
-//       },
-//    }
-// }
 
 export default connect(MapStateToProps, {
    addPost,
    addPostText,
-})(ProfileContainer);
+   setProfile,
+})(withRouter(ProfileContainer));

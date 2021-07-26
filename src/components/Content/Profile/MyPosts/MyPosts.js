@@ -4,7 +4,7 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
    let postsElements =
-      props.posts.map(p => <Post message={p.message} likes={p.likesCount} />)
+      props.posts.map(p => <Post message={p.message} likes={p.likesCount} photos={props.photos} />)
 
    const addPost = () => {
       props.addPost();
@@ -20,7 +20,7 @@ const MyPosts = (props) => {
          <h3 className={styles.activities}>
             My activity
          </h3>
-         <div className={styles.wrapper}>
+         <div className={styles.inputWrapper}>
             <input value={props.newPostText} onChange={onPostTextChange} />
             <button className={styles.button} onClick={addPost}>Send</button>
          </div>
