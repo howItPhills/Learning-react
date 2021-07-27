@@ -9,6 +9,7 @@ import {
   setUsers,
   toggleIsFetching,
   unfollow,
+  checkFollowInProgress,
 } from "../../../redux/findUsersReducer";
 import FindUsers from "./FindUsers";
 import Preloader from "../../../common/preloader";
@@ -59,6 +60,8 @@ class FindUsersContainer extends React.Component {
             currentPage={this.props.currentPage}
             onPageChanged={this.onPageChanged}
             showMoreUsers={this.showMoreUsers}
+            followInProgress={this.props.followInProgress}
+            checkFollowInProgress={this.props.checkFollowInProgress}
           />
         )}
       </>
@@ -74,6 +77,7 @@ const mapStateToProps = (state) => {
     currentPage: state.findUsersPage.currentPage,
     isFetching: state.findUsersPage.isFetching,
     newPage: state.findUsersPage.newPage,
+    followInProgress: state.findUsersPage.followInProgress,
   };
 };
 
@@ -84,6 +88,7 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
+  checkFollowInProgress,
   // increaseNewPage,
   // addMoreUsers,
 })(FindUsersContainer);

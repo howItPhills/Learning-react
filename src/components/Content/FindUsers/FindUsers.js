@@ -4,6 +4,7 @@ import defaultPhoto from "./../../../assets/nophoto.png";
 import { dalAPI } from "../../../API/DalApi";
 
 let FindUsers = (props) => {
+
   let pageAmount = Math.ceil(props.totalUsersCount / props.pageSize);
 
   let pages = [];
@@ -26,29 +27,31 @@ let FindUsers = (props) => {
                 />
               </NavLink>
               {u.followed ? (
-                <button
+                <button disabled={props.followInProgress.some(id => id === u.id)}
                   onClick={() => {
+                    props.checkFollowInProgress(true, u.id);
                     dalAPI.unfollowUser(u.id).then((data) => {
                       if (data.resultCode === 0) {
                         props.unfollow(u.id);
                       }
+                      props.checkFollowInProgress(false, u.id);
+
                     });
                   }}
                 >
                   unfollow
                 </button>
               ) : (
-                <button
-                  onClick={() => {
-                    dalAPI.followUser(u.id).then((data) => {
-                      if (data.resultCode === 0) {
-                        props.follow(u.id);
-                      }
-                    });
-                  }}
-                >
-                  follow
-                </button>
+                <button disabled={props.followInProgress.some(id => id === u.id)} onClick={() => {
+                  props.checkFollowInProgress(true, u.id);
+                  dalAPI.followUser(u.id).then((data) => {
+                    if (data.resultCode === 0) {
+                      props.follow(u.id);
+                    }
+                    props.checkFollowInProgress(false, u.id);
+
+                  });
+                }}>follow</button>
               )}
             </div>
             <div className={styles.description}>
