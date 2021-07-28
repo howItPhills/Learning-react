@@ -1,50 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  addMoreUsers,
   follow,
-  increaseNewPage,
   setCurrentPage,
   setTotalUsersCount,
   setUsers,
   toggleIsFetching,
   unfollow,
   checkFollowInProgress,
+  getUsersThunkCreator,
+  onChangePageThunkCreactor,
 } from "../../../redux/findUsersReducer";
 import FindUsers from "./FindUsers";
 import Preloader from "../../../common/preloader";
-import { dalAPI } from "../../../API/DalApi";
+
 
 class FindUsersContainer extends React.Component {
+
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-    dalAPI
-      .getUsers(this.props.currentPage, this.props.pageSize)
-      .then((data) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(data.items);
-        this.props.setTotalUsersCount(data.totalCount);
-      });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize)
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.toggleIsFetching(true);
-    this.props.setCurrentPage(pageNumber);
-    dalAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.onChangePageThunkCreactor(pageNumber, this.props.pageSize);
   };
 
-  // showMoreUsers = () => {
-  //    console.log(this.props.newPage);
-  //    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.newPage}&count=${this.props.pageSize}`).then
-  //       (response => {
-  //          this.props.addMoreUsers(response.data.items)
-  //          this.props.increaseNewPage();
-  //       });
-  //    console.log(this.props.newPage);
-  // }
+
   render() {
     return (
       <>
@@ -89,6 +70,8 @@ export default connect(mapStateToProps, {
   setTotalUsersCount,
   toggleIsFetching,
   checkFollowInProgress,
+  getUsers: getUsersThunkCreator,
+  onPageChanged: onChangePageThunkCreactor,
   // increaseNewPage,
   // addMoreUsers,
 })(FindUsersContainer);

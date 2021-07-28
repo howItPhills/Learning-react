@@ -1,17 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import Header from "./Header";
-import { setUsersAuth } from "../../redux/authReducer";
+import { checkAuthThunkCreator, setUsersAuth } from "../../redux/authReducer";
 import { dalAPI } from "../../API/DalApi";
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    dalAPI.checkAuth().then((data) => {
-      if (data.resultCode === 0) {
-        let { id, login, email } = data.data;
-        this.props.setUsersAuth(id, login, email);
-      }
-    });
+    this.props.checkAuth()
   }
   render() {
     return <Header {...this.props} />;
@@ -29,4 +24,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   setUsersAuth,
+  checkAuth: checkAuthThunkCreator,
 })(HeaderContainer);

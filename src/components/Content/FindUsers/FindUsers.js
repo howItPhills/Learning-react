@@ -27,7 +27,7 @@ let FindUsers = (props) => {
                 />
               </NavLink>
               {u.followed ? (
-                <button disabled={props.followInProgress.some(id => id === u.id)}
+                <button disabled={props.followInProgress.includes(u.id)}
                   onClick={() => {
                     props.checkFollowInProgress(true, u.id);
                     dalAPI.unfollowUser(u.id).then((data) => {
@@ -42,14 +42,13 @@ let FindUsers = (props) => {
                   unfollow
                 </button>
               ) : (
-                <button disabled={props.followInProgress.some(id => id === u.id)} onClick={() => {
+                <button disabled={props.followInProgress.includes(u.id)} onClick={() => {
                   props.checkFollowInProgress(true, u.id);
                   dalAPI.followUser(u.id).then((data) => {
                     if (data.resultCode === 0) {
                       props.follow(u.id);
                     }
                     props.checkFollowInProgress(false, u.id);
-
                   });
                 }}>follow</button>
               )}

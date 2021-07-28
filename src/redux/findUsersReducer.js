@@ -1,3 +1,5 @@
+import { dalAPI } from "../API/DalApi";
+
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
@@ -95,3 +97,24 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const checkFollowInProgress = (isFetching, id) => ({ type: FOLLOWING_IN_PROGRESS, isFetching, id });
 // export const increaseNewPage = () => ({ type: INCREASE_NEW_PAGE });
 // export const addMoreUsers = (newUsers) => ({ type: ADD_MORE_USERS, newUsers });
+
+
+export const getUsersThunkCreator = (currentPage, pageSize) => (dispatch) => {
+   dispatch(toggleIsFetching(true));
+   dalAPI
+      .getUsers(currentPage, pageSize)
+      .then((data) => {
+         dispatch(toggleIsFetching(false));
+         dispatch(setUsers(data.items));
+         dispatch(setTotalUsersCount(data.totalCount));
+      });
+}
+
+export const onChangePageThunkCreactor = (pageNumber, pageSize) => (dispatch) => {
+   dispatch(toggleIsFetching(true));
+   dispatch(setCurrentPage(pageNumber));
+   dalAPI.getUsers(pageNumber, pageSize).then((data) => {
+      dispatch(toggleIsFetching(false))
+      dispatch(setUsers(data.items))
+   });
+}

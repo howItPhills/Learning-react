@@ -1,3 +1,5 @@
+import { dalAPI } from "../API/DalApi";
+
 const ADDPOST = 'ADD-POST';
 const ADDPOSTTEXT = 'ADD-POST-TEXT';
 const SET_PROFILE = 'SET_PROFILE';
@@ -48,3 +50,10 @@ export const profileReducer = (state = initialState, action) => {
 export const addPost = () => ({ type: 'ADD-POST' });
 export const addPostText = (newPostText) => ({ type: 'ADD-POST-TEXT', text: newPostText });
 export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
+
+
+export const setProfileThunkCreator = (userId) => (dispatch) => {
+   dalAPI.setProfile(userId).then((data) => {
+      dispatch(setProfile(data));
+   });
+}
