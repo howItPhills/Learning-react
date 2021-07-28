@@ -25,7 +25,7 @@ export const authReducer = (state = inintialState, action) => {
 
 export const setUsersAuth = (id, login, email) => ({ type: SET_USERS_AUTH, data: { id, login, email } });
 
-export const checkAuthThunkCreator = () => (dispatch) =>
+export const checkAuth = () => (dispatch) =>
    dalAPI.checkAuth().then((data) => {
       if (data.resultCode === 0) {
          let { id, login, email } = data.data;

@@ -52,7 +52,7 @@ export const addPostText = (newPostText) => ({ type: 'ADD-POST-TEXT', text: newP
 export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
 
 
-export const setProfileThunkCreator = (userId) => (dispatch) => {
+export const getProfile = (userId) => (dispatch) => {
    dalAPI.setProfile(userId).then((data) => {
       dispatch(setProfile(data));
    });

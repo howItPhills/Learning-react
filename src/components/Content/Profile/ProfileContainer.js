@@ -4,8 +4,7 @@ import { withRouter } from "react-router-dom";
 import {
   addPost,
   addPostText,
-  setProfile,
-  setProfileThunkCreator,
+  getProfile,
 } from "../../../redux/profileReducer";
 import Profile from "./Profile";
 
@@ -15,7 +14,7 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    this.props.setProfile(userId);
+    this.props.getProfile(userId);
   }
   render() {
     return <Profile {...this.props} />;
@@ -34,6 +33,5 @@ const MapStateToProps = (state) => {
 export default connect(MapStateToProps, {
   addPost,
   addPostText,
-  setProfile,
-  setProfile: setProfileThunkCreator,
+  getProfile,
 })(withRouter(ProfileContainer));

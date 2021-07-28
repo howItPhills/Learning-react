@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./FindUsers.module.css";
 import defaultPhoto from "./../../../assets/nophoto.png";
-import { dalAPI } from "../../../API/DalApi";
+
 
 let FindUsers = (props) => {
 
@@ -29,27 +29,14 @@ let FindUsers = (props) => {
               {u.followed ? (
                 <button disabled={props.followInProgress.includes(u.id)}
                   onClick={() => {
-                    props.checkFollowInProgress(true, u.id);
-                    dalAPI.unfollowUser(u.id).then((data) => {
-                      if (data.resultCode === 0) {
-                        props.unfollow(u.id);
-                      }
-                      props.checkFollowInProgress(false, u.id);
-
-                    });
+                    props.unfollowing(u.id)
                   }}
                 >
                   unfollow
                 </button>
               ) : (
                 <button disabled={props.followInProgress.includes(u.id)} onClick={() => {
-                  props.checkFollowInProgress(true, u.id);
-                  dalAPI.followUser(u.id).then((data) => {
-                    if (data.resultCode === 0) {
-                      props.follow(u.id);
-                    }
-                    props.checkFollowInProgress(false, u.id);
-                  });
+                  props.following(u.id)
                 }}>follow</button>
               )}
             </div>
@@ -69,7 +56,6 @@ let FindUsers = (props) => {
           </span>
         ))}
       </div>
-      {/* <button onClick={() => props.showMoreUsers()}>Add users</button> */}
     </div>
   );
 };

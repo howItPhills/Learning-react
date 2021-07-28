@@ -95,11 +95,9 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const checkFollowInProgress = (isFetching, id) => ({ type: FOLLOWING_IN_PROGRESS, isFetching, id });
-// export const increaseNewPage = () => ({ type: INCREASE_NEW_PAGE });
-// export const addMoreUsers = (newUsers) => ({ type: ADD_MORE_USERS, newUsers });
 
 
-export const getUsersThunkCreator = (currentPage, pageSize) => (dispatch) => {
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
    dispatch(toggleIsFetching(true));
    dalAPI
       .getUsers(currentPage, pageSize)
@@ -110,7 +108,7 @@ export const getUsersThunkCreator = (currentPage, pageSize) => (dispatch) => {
       });
 }
 
-export const onChangePageThunkCreactor = (pageNumber, pageSize) => (dispatch) => {
+export const onPageChanged = (pageNumber, pageSize) => (dispatch) => {
    dispatch(toggleIsFetching(true));
    dispatch(setCurrentPage(pageNumber));
    dalAPI.getUsers(pageNumber, pageSize).then((data) => {
@@ -118,3 +116,25 @@ export const onChangePageThunkCreactor = (pageNumber, pageSize) => (dispatch) =>
       dispatch(setUsers(data.items))
    });
 }
+
+export const unfollowing = (id) => (dispatch) => {
+   dispatch(checkFollowInProgress(true, id))
+   dalAPI.unfollowUser(id).then((data) => {
+      if (data.resultCode === 0) {
+         dispatch(unfollow(id))
+      }
+      dispatch(checkFollowInProgress(false, id))
+
+   });
+}
+export const following = (id) => (dispatch) => {
+   dispatch(checkFollowInProgress(true, id))
+   dalAPI.followUser(id).then((data) => {
+      if (data.resultCode === 0) {
+         dispatch(follow(id))
+      }
+      dispatch(checkFollowInProgress(false, id))
+
+   });
+}
+
