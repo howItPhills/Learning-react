@@ -1,11 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
+import logo from '../../assets/logos/logo4.webp';
+
+
+// "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fadvocate-logo-4.jpg&f=1&nofb=1"
 
 const Header = (props) => {
    return (
       <header className={styles.header}>
-         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fadvocate-logo-4.jpg&f=1&nofb=1" className={styles.logo} />
-         <p>my space</p>
+         <img src={logo} className={styles.logo} />
+         <div className={styles.name}>Authorize</div>
          <div className={styles.loginInfo}>
             {
                props.isAuthorized ? props.login : <NavLink to='/login' className={styles.login}>Login</NavLink >

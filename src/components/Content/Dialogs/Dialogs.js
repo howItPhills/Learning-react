@@ -1,6 +1,7 @@
 import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -19,6 +20,8 @@ const Dialogs = (props) => {
 
    let messagesElement =
       props.messages.map(m => <Message message={m.message} />);
+
+   if (!props.isAuthorized) return <Redirect to="/login" />
 
    return (
       <div className={styles.dialogs}>

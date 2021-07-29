@@ -8,10 +8,6 @@ const Description = (props) => {
       <div className={styles.wrapper}>
          <img src={props.profileInfo.photos.large ?? defaultPhoto} className={styles.photo} />
          <p className={styles.name}>{props.profileInfo.fullName}</p>
-         <p>26 years old</p>
-         <p>Current state: NYC</p>
-         <p>Frontend Developer</p>
-         <p>About me: love cats, hate haters </p>
          <FriendsContainer />
       </div>
    )

@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
+import { compose } from "redux";
+import Preloader from "../../../common/preloader";
+import withAuthRedirect from "../../../hoc/authHoc";
 import {
   addPost,
   addPostText,
@@ -17,9 +20,13 @@ class ProfileContainer extends React.Component {
     this.props.getProfile(userId);
   }
   render() {
+    if (!this.props.profileInfo) return <Preloader />
     return <Profile {...this.props} />;
   }
 }
+
+
+
 
 const MapStateToProps = (state) => {
   return {
@@ -30,8 +37,11 @@ const MapStateToProps = (state) => {
   };
 };
 
-export default connect(MapStateToProps, {
+
+
+
+export default compose(withAuthRedirect, connect(MapStateToProps, {
   addPost,
   addPostText,
   getProfile,
-})(withRouter(ProfileContainer));
+}), withRouter)(ProfileContainer)

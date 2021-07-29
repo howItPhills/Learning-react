@@ -3,8 +3,6 @@ import { dalAPI } from "../API/DalApi";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-// const INCREASE_NEW_PAGE = "INCREASE_NEW_PAGE";
-// const ADD_MORE_USERS = "ADD_MORE_USERS";
 const FOLLOWING_IN_PROGRESS = "FOLLOWING_IN_PROGRESS";
 
 let inintialState = {
@@ -13,7 +11,6 @@ let inintialState = {
    totalUsersCount: 0,
    currentPage: 1,
    isFetching: false,
-   newPage: 2,
    followInProgress: [],
 }
 
@@ -71,18 +68,6 @@ export const findUsersReducer = (state = inintialState, action) => {
             followInProgress: action.isFetching ? [...state.followInProgress, action.id] : state.followInProgress.filter(id => id !== action.id),
          }
       }
-      // case INCREASE_NEW_PAGE: {
-      //    return {
-      //       ...state,
-      //       newPage: ++state.newPage,
-      //    }
-      // }
-      // case ADD_MORE_USERS: {
-      //    return {
-      //       ...state,
-      //       users: [...state.users, ...action.newUsers],
-      //    }
-      // }
       default:
          return state;
    }
