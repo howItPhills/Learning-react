@@ -7,7 +7,7 @@ import Status from './Status/Status';
 const Description = (props) => {
    return (
       <div className={styles.wrapper}>
-         <img src={props.profileInfo.photos.large || defaultPhoto} className={styles.photo} />
+         <img src={props.profileInfo.photos.large || defaultPhoto} className={styles.photo} alt='avatar' />
          <p className={styles.name}>{props.profileInfo.fullName}</p>
          <Status status={props.status} updateStatus={props.updateStatus} />
          <FriendsContainer />

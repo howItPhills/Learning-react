@@ -1,4 +1,3 @@
-import styles from './Friends.module.css';
 import Friends from './Friends'
 import { connect } from 'react-redux';
 

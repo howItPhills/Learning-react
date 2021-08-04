@@ -8,7 +8,7 @@ import logo from '../../assets/logos/logo4.webp';
 const Header = (props) => {
    return (
       <header className={styles.header}>
-         <img src={logo} className={styles.logo} />
+         <img src={logo} className={styles.logo} alt='logo' />
          <div className={styles.name}>Authorize</div>
          <div className={styles.loginInfo}>
             {

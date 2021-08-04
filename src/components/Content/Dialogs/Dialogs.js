@@ -16,10 +16,10 @@ const Dialogs = (props) => {
    }
 
    let dialogsElement =
-      props.dialogs.map(d => <Dialog name={d.name} id={d.id} />);
+      props.dialogs.map(d => <Dialog name={d.name} id={d.id} key={d.id} />);
 
    let messagesElement =
-      props.messages.map(m => <Message message={m.message} />);
+      props.messages.map(m => <Message message={m.message} key={m.id} />);
 
    if (!props.isAuthorized) return <Redirect to="/login" />
 

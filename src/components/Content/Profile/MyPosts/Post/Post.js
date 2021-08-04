@@ -7,7 +7,7 @@ const Post = (props) => {
    return (
       <div className={styles.item}>
          <div className={styles.wrapper}>
-            <img src={props.photos.small ?? defaultPhoto} className={styles.photo} />
+            <img src={props.photos.small || defaultPhoto} className={styles.photo} alt='smallPhoto' />
             <div className={styles.message}>{props.message}</div>
          </div>
          <div className={styles.counter}>

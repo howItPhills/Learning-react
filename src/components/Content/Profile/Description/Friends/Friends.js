@@ -3,7 +3,7 @@ import Friend from './Friend/Friend'
 
 
 const Friends = (props) => {
-   let friendsElements = props.friends.map(f => <Friend src={f.src} />)
+   let friendsElements = props.friends.map(f => <Friend src={f.src} key={f.id} />)
    return (
       <div className={styles.wrapper}>
          <h3 className={styles.title}>My Friends</h3>

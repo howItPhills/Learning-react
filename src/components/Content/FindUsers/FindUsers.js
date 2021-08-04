@@ -22,7 +22,7 @@ let FindUsers = (props) => {
             <div className={styles.user}>
               <NavLink to={"/profile/" + u.id}>
                 <img
-                  src={u.photos.small === null ? defaultPhoto : u.photos.small}
+                  src={u.photos.small === null ? defaultPhoto : u.photos.small} alt='userPhoto'
                   className={styles.photo}
                 />
               </NavLink>
