@@ -3,6 +3,7 @@ import { dalAPI } from "../API/DalApi";
 const ADDPOST = 'ADD-POST';
 const ADDPOSTTEXT = 'ADD-POST-TEXT';
 const SET_PROFILE = 'SET_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
    posts: [
@@ -16,6 +17,7 @@ let initialState = {
    ],
    newPostText: "",
    profileInfo: null,
+   status: ''
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -42,6 +44,11 @@ export const profileReducer = (state = initialState, action) => {
             ...state,
             profileInfo: action.profileInfo
          };
+      case SET_STATUS:
+         return {
+            ...state,
+            status: action.status
+         };
       default:
          return state;
    }
@@ -50,10 +57,22 @@ export const profileReducer = (state = initialState, action) => {
 export const addPost = () => ({ type: 'ADD-POST' });
 export const addPostText = (newPostText) => ({ type: 'ADD-POST-TEXT', text: newPostText });
 export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
+export const setStatus = (status) => ({ type: SET_STATUS, status });
 
 
 export const getProfile = (userId) => (dispatch) => {
    dalAPI.setProfile(userId).then((data) => {
       dispatch(setProfile(data));
    });
+}
+
+export const getStatus = (id) => (dispatch) => {
+   dalAPI.getStatus(id).then(data => dispatch(setStatus(data)))
+}
+export const updateStatus = (status) => (dispatch) => {
+   dalAPI.updateStatus(status).then(data => {
+      if (data.resultCode === 0) {
+         dispatch(setStatus(status))
+      }
+   })
 }

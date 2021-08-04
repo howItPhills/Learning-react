@@ -25,4 +25,10 @@ export const dalAPI = {
    checkAuth() {
       return instance.get(`auth/me`).then((response) => response.data);
    },
+   getStatus(id) {
+      return instance.get(`/profile/status/${id}`).then(response => response.data);
+   },
+   updateStatus(status) {
+      return instance.put(`/profile/status`, { status }).then(response => response.data);
+   }
 };

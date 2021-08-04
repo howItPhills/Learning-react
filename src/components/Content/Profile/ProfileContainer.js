@@ -8,6 +8,8 @@ import {
   addPost,
   addPostText,
   getProfile,
+  getStatus,
+  updateStatus,
 } from "../../../redux/profileReducer";
 import Profile from "./Profile";
 
@@ -15,9 +17,10 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 2;
+      userId = 18452;
     }
     this.props.getProfile(userId);
+    this.props.getStatus(userId)
   }
   render() {
     if (!this.props.profileInfo) return <Preloader />
@@ -34,6 +37,7 @@ const MapStateToProps = (state) => {
     friends: state.profilePage.friends,
     newPostText: state.profilePage.newPostText,
     profileInfo: state.profilePage.profileInfo,
+    status: state.profilePage.status,
   };
 };
 
@@ -44,4 +48,6 @@ export default compose(withAuthRedirect, connect(MapStateToProps, {
   addPost,
   addPostText,
   getProfile,
+  getStatus,
+  updateStatus,
 }), withRouter)(ProfileContainer)
