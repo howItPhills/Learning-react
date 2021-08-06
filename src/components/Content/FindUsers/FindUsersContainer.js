@@ -10,6 +10,7 @@ import FindUsers from "./FindUsers";
 import Preloader from "../../../common/preloader";
 import { compose } from "redux";
 import withAuthRedirect from "../../../hoc/authHoc";
+import { Redirect } from "react-router-dom";
 
 
 class FindUsersContainer extends React.Component {
@@ -24,24 +25,17 @@ class FindUsersContainer extends React.Component {
 
 
   render() {
-    return (
-      <>
-        {this.props.isFetching ? (
-          <Preloader />
-        ) : (
-          <FindUsers
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            users={this.props.users}
-            currentPage={this.props.currentPage}
-            onPageChanged={this.onPageChanged}
-            followInProgress={this.props.followInProgress}
-            unfollowing={this.props.unfollowing}
-            following={this.props.following}
-          />
-        )}
-      </>
-    );
+    if (this.props.isFetching) return <Preloader />
+    return <FindUsers
+      totalUsersCount={this.props.totalUsersCount}
+      pageSize={this.props.pageSize}
+      users={this.props.users}
+      currentPage={this.props.currentPage}
+      onPageChanged={this.onPageChanged}
+      followInProgress={this.props.followInProgress}
+      unfollowing={this.props.unfollowing}
+      following={this.props.following}
+    />
   }
 }
 
@@ -52,6 +46,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.findUsersPage.totalUsersCount,
     currentPage: state.findUsersPage.currentPage,
     followInProgress: state.findUsersPage.followInProgress,
+    isFetching: state.findUsersPage.isFetching,
   };
 };
 

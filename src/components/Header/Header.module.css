@@ -17,7 +17,7 @@
 }
 
 
-.name {
+.logoName {
    font-weight: bold;
    font-size: 15px;
    font-style: italic;
@@ -30,26 +30,49 @@
    font-size: 18px;
    color: rgb(24, 12, 12);
    display: inline-block;
-   border: 1px solid #fff;
+   border: 2px solid #000;
+   font-weight: bold;
    border-radius: 5px;
    padding: 2px 13px;
    transition: all 0.3s ease;
+   margin-left: auto;
 }
 
 .login:hover {
    background: #fff;
    color: #000;
+   border: 2px solid #fff;
 }
 
 .loginInfo {
    margin-left: auto;
-   color: rgb(24, 12, 12);
-   letter-spacing: 1px;
-   font-size: 18px;
-   font-style: italic;
 }
 
-.loginInfo:hover {
-   text-decoration: underline;
+.name {
+   font-size: 18px;
+   font-style: italic;
+   color: rgb(24, 12, 12);
    cursor: pointer;
+   letter-spacing: 1px;
+   text-decoration: none;
+   margin-right: 10px;
+}
+
+.name:hover {
+   text-decoration: underline;
+}
+.logout {
+   all: unset;
+   cursor: pointer;
+   border: 1px solid #000;
+   border-radius: 10px;
+   padding: 5px 10px;
+   font-size: 18px;
+   transition: all 0.3s ease;
+}
+
+.logout:hover {
+   background: #fff;
+   color: #000;
+   border: 1px solid #fff;
 }

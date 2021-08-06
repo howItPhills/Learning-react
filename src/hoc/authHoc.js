@@ -12,7 +12,7 @@ const mapStateToPropsRedirect = (state) => {
 const withAuthRedirect = (Component) => {
 
    const AuthRedirectContainerComponent = (props) => {
-      if (!props.isAuthorized) return <Redirect to='/login' />
+      if (!props.isAuthorized) return < Redirect to='/login' />
       return <Component {...props} />
    }
    const AuthRedirect = connect(mapStateToPropsRedirect)(AuthRedirectContainerComponent);

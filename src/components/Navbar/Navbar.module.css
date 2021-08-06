@@ -30,7 +30,6 @@ ul {
    color: #fff;
    background: rgb(173, 62, 62);
    border-radius: 5px;
-   border-bottom: none;
 }
 
 .nav li:not(:nth-child(5)) {
