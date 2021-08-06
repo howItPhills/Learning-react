@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import FindUsersContainer from './FindUsers/FindUsersContainer';
 import ProfileContainer from './Profile/ProfileContainer';
-import Login from './Login/Login';
+import LoginContainer from './Login/LoginContainer';
 
 
 const Content = () => {
@@ -20,7 +20,7 @@ const Content = () => {
       <Route path='/videos' component={Videos} />
       <Route path='/settings' component={Settings} />
       <Route path='/findusers' render={() => <FindUsersContainer />} />
-      <Route path='/login' render={() => <Login />} />
+      <Route path='/login' render={() => <LoginContainer />} />
     </div>
   );
 }

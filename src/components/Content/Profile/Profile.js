@@ -3,7 +3,6 @@ import Description from './Description/Description.js';
 import MyPosts from './MyPosts/MyPosts';
 
 
-
 const Profile = (props) => {
    return (
       <div className={styles.content} >

@@ -15,6 +15,9 @@ const Header = (props) => {
                props.isAuthorized ? props.login : <NavLink to='/login' className={styles.login}>Login</NavLink >
             }
          </div>
+         {
+            props.isAuthorized ? <NavLink onClick={props.logout} to='/login'>Logout</NavLink> : null
+         }
 
       </header>
    )

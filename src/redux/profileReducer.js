@@ -1,7 +1,6 @@
 import { dalAPI } from "../API/DalApi";
 
 const ADDPOST = 'ADD-POST';
-const ADDPOSTTEXT = 'ADD-POST-TEXT';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -15,7 +14,6 @@ let initialState = {
       { id: 2, src: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F05%2F13%2F334355-people-model-fashion-forest-dress-portrait.jpg&f=1&nofb=1" },
       { id: 3, src: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.businessinsider.com%2Fimage%2F52a5eabc69bedd1379312cf4%2Fimage.jpg&f=1&nofb=1" },
    ],
-   newPostText: "",
    profileInfo: null,
    status: ''
 }
@@ -25,20 +23,14 @@ export const profileReducer = (state = initialState, action) => {
       case ADDPOST: {
          let newPost = {
             id: 5,
-            message: state.newPostText,
+            message: action.post,
             likesCount: 0,
          }
          return {
             ...state,
             posts: [...state.posts, newPost],
-            newPostText: '',
          };
       }
-      case ADDPOSTTEXT:
-         return {
-            ...state,
-            newPostText: action.text
-         };
       case SET_PROFILE:
          return {
             ...state,
@@ -54,8 +46,7 @@ export const profileReducer = (state = initialState, action) => {
    }
 }
 
-export const addPost = () => ({ type: 'ADD-POST' });
-export const addPostText = (newPostText) => ({ type: 'ADD-POST-TEXT', text: newPostText });
+export const addPost = (post) => ({ type: 'ADD-POST', post });
 export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 

@@ -2,18 +2,24 @@ import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 import { Redirect } from 'react-router-dom';
+import { Field, Form, Formik } from 'formik';
+import * as yup from 'yup';
 
 
 
 const Dialogs = (props) => {
-   let sendMessage = () => {
-      props.sendMessage();
+
+   const initialValues = {
+      message: ''
    }
 
-   let changeMessage = (e) => {
-      let messageText = e.target.value;
-      props.changeMessage(messageText);
+   const onSubmit = values => {
+      props.sendMessage(values.message)
    }
+
+   const validationSchema = yup.object({
+      message: yup.string().required('Write a message'),
+   })
 
    let dialogsElement =
       props.dialogs.map(d => <Dialog name={d.name} id={d.id} key={d.id} />);
@@ -31,11 +37,16 @@ const Dialogs = (props) => {
          <div className={styles.messages}>
             {messagesElement}
          </div>
-         <input value={props.valueMessage} onChange={changeMessage} className={styles.input} />
-         <button onClick={sendMessage} className={styles.button}>Send</button>
+         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+            <Form>
+               <Field type='text' name='message' id='message' />
+               <button type='submit'>Send</button>
+            </Form>
+         </Formik>
       </div>
 
    )
 }
+
 
 export default Dialogs;

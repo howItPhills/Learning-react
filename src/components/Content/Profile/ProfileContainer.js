@@ -6,7 +6,6 @@ import Preloader from "../../../common/preloader";
 import withAuthRedirect from "../../../hoc/authHoc";
 import {
   addPost,
-  addPostText,
   getProfile,
   getStatus,
   updateStatus,
@@ -46,7 +45,6 @@ const MapStateToProps = (state) => {
 
 export default compose(withAuthRedirect, connect(MapStateToProps, {
   addPost,
-  addPostText,
   getProfile,
   getStatus,
   updateStatus,
