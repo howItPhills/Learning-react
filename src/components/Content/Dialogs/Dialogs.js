@@ -1,7 +1,6 @@
 import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
-import { Redirect } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 

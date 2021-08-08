@@ -3,7 +3,7 @@ import styles from "./FindUsers.module.css";
 import defaultPhoto from "./../../../assets/nophoto.png";
 
 
-let FindUsers = (props) => {
+const FindUsers = (props) => {
 
   let pageAmount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -15,10 +15,9 @@ let FindUsers = (props) => {
 
   return (
     <div>
-      <h2 className={styles.title}>Users to find, friends to meet</h2>
-      {props.users.map((u) => (
-        <div className={styles.main} key={u.id}>
-          <div className={styles.wrapper}>
+      <div className={styles.main} >
+        {props.users.map((u) => (
+          <div className={styles.wrapper} key={u.id}>
             <div className={styles.user}>
               <NavLink to={"/profile/" + u.id}>
                 <img
@@ -44,11 +43,12 @@ let FindUsers = (props) => {
               <div className={styles.text}>{u.name}</div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <div className={styles.pagination}>
         {pages.map((p) => (
           <span
+            key={p}
             className={props.currentPage === p && styles.selected}
             onClick={() => props.onPageChanged(p)}
           >
@@ -57,7 +57,7 @@ let FindUsers = (props) => {
         ))}
       </div>
     </div>
-  );
+  )
 };
 
 export default FindUsers;

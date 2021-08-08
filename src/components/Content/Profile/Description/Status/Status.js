@@ -1,48 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
 
-class Status extends React.Component {
+const StatusHooks = (props) => {
 
-   state = {
-      isEditing: false,
-      status: '',
+   const [isEditing, setEditMode] = useState(false);
+   const [status, setStatus] = useState(props.status);
+
+
+   useEffect(() => {
+      setStatus(props.status)
+   }, [props.status])
+
+   const changeEditMode = () => {
+      setEditMode(true);
    }
 
-   activateEditMode = () => {
-      this.setState({
-         isEditing: true,
-         status: this.props.status
-      })
-   }
-   deActivateEditMode = () => {
-      this.setState({
-         isEditing: false,
-      })
-      this.props.updateStatus(this.state.status)
+   const closeEditMode = () => {
+      setEditMode(false);
+      props.updateStatus(status)
    }
 
-   onChangeStatus = (e) => {
-      this.setState({
-         status: e.currentTarget.value
-      })
+   const onStatusChange = (e) => {
+      setStatus(e.currentTarget.value)
    }
 
-   componentDidUpdate(prevProps, prevState) {
-      if (prevProps.status !== this.props.status) {
-         this.setState({
-            status: this.props.status
-         })
-      }
-   }
-
-   render() {
-      return (
+   return (
+      <div>
          <div>
-            {!this.state.isEditing ?
-               <span onDoubleClick={this.activateEditMode}>{this.props.status || '...'}</span> :
-               <input value={this.state.status} onChange={this.onChangeStatus} onBlur={this.deActivateEditMode} autoFocus={true} />}
+            {!isEditing ?
+               <span onDoubleClick={changeEditMode}>{props.status || '...'}</span> :
+               <input autoFocus={true} onBlur={closeEditMode} value={status} onChange={onStatusChange} />}
          </div>
-      )
-   }
+      </div>
+   )
 }
 
-export default Status
+export default StatusHooks

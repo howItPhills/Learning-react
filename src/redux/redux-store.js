@@ -5,6 +5,7 @@ import { findUsersReducer } from './findUsersReducer';
 import { profileReducer } from './profileReducer';
 import ThunkMiddleWare from 'redux-thunk';
 import { appReducer } from './appReducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 let reducers = combineReducers({
    dialogsPage: dialogsReducer,
@@ -14,7 +15,7 @@ let reducers = combineReducers({
    app: appReducer,
 })
 
-let store = createStore(reducers, applyMiddleware(ThunkMiddleWare));
+let store = createStore(reducers, composeWithDevTools(applyMiddleware(ThunkMiddleWare)));
 
 window.store = store;
 

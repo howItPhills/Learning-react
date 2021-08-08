@@ -2,9 +2,10 @@ import * as yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
+import React from 'react';
 
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
 
    const initialValues = {
       post: '',
@@ -19,8 +20,6 @@ const MyPosts = (props) => {
    })
    const postsElements =
       props.posts.map(p => <Post message={p.message} likes={p.likesCount} photos={props.photos} key={p.id} />)
-
-
 
    return (
       <div className={styles.wrapper}>
@@ -38,6 +37,6 @@ const MyPosts = (props) => {
          {postsElements}
       </div>
    )
-}
+});
 
 export default MyPosts;
