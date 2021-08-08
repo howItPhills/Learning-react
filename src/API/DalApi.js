@@ -22,7 +22,7 @@ export const dalAPI = {
    setProfile(id) {
       return instance.get(`profile/${id}`).then((response) => response.data);
    },
-   checkAuth() {
+   requestUsersData() {
       return instance.get(`auth/me`).then((response) => response.data);
    },
    getStatus(id) {

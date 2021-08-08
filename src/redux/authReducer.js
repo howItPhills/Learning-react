@@ -1,3 +1,4 @@
+import { Redirect } from "react-router-dom";
 import { dalAPI } from "../API/DalApi";
 
 const SET_USERS_AUTH = 'SET_USERS_AUTH';
@@ -23,8 +24,8 @@ export const authReducer = (state = inintialState, action) => {
 
 export const setUsersAuth = (id, login, email, isAuthorized) => ({ type: SET_USERS_AUTH, payload: { id, login, email, isAuthorized } });
 
-export const checkAuth = () => (dispatch) => {
-   return dalAPI.checkAuth().then((data) => {
+export const checkAuthData = () => (dispatch) => {
+   return dalAPI.requestUsersData().then((data) => {
       if (data.resultCode === 0) {
          let { id, login, email } = data.data;
          dispatch(setUsersAuth(id, login, email, true))
@@ -35,12 +36,13 @@ export const checkAuth = () => (dispatch) => {
 export const login = (email, password, rememberMe) => (dispatch) =>
    dalAPI.login(email, password, rememberMe).then((data) => {
       if (data.resultCode === 0) {
-         dispatch(checkAuth())
+         dispatch(checkAuthData())
       }
    });
 export const logout = () => (dispatch) =>
    dalAPI.logout().then((data) => {
       if (data.resultCode === 0) {
          dispatch(setUsersAuth(null, null, null, false))
+         return <Redirect to='/login' />
       }
    });

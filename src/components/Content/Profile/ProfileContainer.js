@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import Preloader from "../../../common/preloader";
 import withAuthRedirect from "../../../hoc/authHoc";
+import { getFriends, getPosts } from "../../../redux/profile-selectors";
 import {
   addPost,
   getProfile,
@@ -16,7 +17,7 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 18452;
+      userId = this.props.authorizedId;
     }
     this.props.getProfile(userId);
     this.props.getStatus(userId)
@@ -32,11 +33,12 @@ class ProfileContainer extends React.Component {
 
 const MapStateToProps = (state) => {
   return {
-    posts: state.profilePage.posts,
-    friends: state.profilePage.friends,
+    posts: getPosts(state),
+    friends: getFriends(state),
     newPostText: state.profilePage.newPostText,
     profileInfo: state.profilePage.profileInfo,
     status: state.profilePage.status,
+    authorizedId: state.auth.id,
   };
 };
 

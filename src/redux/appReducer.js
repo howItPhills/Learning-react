@@ -1,4 +1,4 @@
-import { checkAuth } from "./authReducer";
+import { checkAuthData } from "./authReducer";
 
 const SUCCESSFULL_INITIALIZATION = 'SUCCESSFULL_INITIALIZATION';
 
@@ -21,5 +21,5 @@ export const appReducer = (state = inintialState, action) => {
 export const successfulInit = () => ({ type: SUCCESSFULL_INITIALIZATION });
 
 export const initializeApp = () => (dispatch) => {
-   dispatch(checkAuth()).then(() => dispatch(successfulInit()))
+   dispatch(checkAuthData()).then(() => dispatch(successfulInit()))
 }

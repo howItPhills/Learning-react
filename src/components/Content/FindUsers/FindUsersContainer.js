@@ -9,8 +9,6 @@ import {
 import FindUsers from "./FindUsers";
 import Preloader from "../../../common/preloader";
 import { compose } from "redux";
-import withAuthRedirect from "../../../hoc/authHoc";
-import { Redirect } from "react-router-dom";
 
 
 class FindUsersContainer extends React.Component {
@@ -50,7 +48,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default compose(withAuthRedirect, connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
   onPageChanged,
   getUsers,
   unfollowing,

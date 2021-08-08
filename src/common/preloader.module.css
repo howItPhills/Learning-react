@@ -1,5 +1,10 @@
+.wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 150px;
+}
+
 .preloader {
-   display: block;
-   margin: 40px auto;
-   max-width: 30%;
+   max-width: 10%;
 }
