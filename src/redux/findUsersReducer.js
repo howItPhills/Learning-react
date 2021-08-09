@@ -7,11 +7,12 @@ const FOLLOWING_IN_PROGRESS = "FOLLOWING_IN_PROGRESS";
 
 let inintialState = {
    users: [],
-   pageSize: 12,
+   pageSize: 9,
    totalUsersCount: 0,
    currentPage: 1,
    isFetching: false,
    followInProgress: [],
+   portionSize: 10,
 }
 
 export const findUsersReducer = (state = inintialState, action) => {

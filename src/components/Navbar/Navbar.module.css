@@ -9,7 +9,7 @@ ul {
    padding: 10px;
    grid-area: n;
    place-self: start center;
-   width: 90%;
+   width: 100%;
 }
 
 .nav.back {
@@ -18,7 +18,7 @@ ul {
 
 .nav a {
    text-decoration: none;
-   letter-spacing: 2px;
+   letter-spacing: 1px;
    color: rgb(70, 56, 56);
    padding: 5px;
    transition: all 0.15s ease;

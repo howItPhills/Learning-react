@@ -33,6 +33,7 @@ class FindUsersContainer extends React.Component {
       followInProgress={this.props.followInProgress}
       unfollowing={this.props.unfollowing}
       following={this.props.following}
+      portionSize={this.props.portionSize}
     />
   }
 }
@@ -45,6 +46,7 @@ const mapStateToProps = (state) => {
     currentPage: state.findUsersPage.currentPage,
     followInProgress: state.findUsersPage.followInProgress,
     isFetching: state.findUsersPage.isFetching,
+    portionSize: state.findUsersPage.portionSize,
   };
 };
 

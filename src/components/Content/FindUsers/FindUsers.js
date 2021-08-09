@@ -1,28 +1,20 @@
 import { NavLink } from "react-router-dom";
-import styles from "./FindUsers.module.css";
 import defaultPhoto from "./../../../assets/nophoto.png";
+import Pagination from "./Pagination/Pagination";
 
 
 const FindUsers = (props) => {
 
-  let pageAmount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  let pages = [];
-
-  for (let i = 1; i <= pageAmount; i++) {
-    pages.push(i);
-  }
-
   return (
     <div>
-      <div className={styles.main} >
+      <div className="users" >
         {props.users.map((u) => (
-          <div className={styles.wrapper} key={u.id}>
-            <div className={styles.user}>
+          <div className="users__wrapper" key={u.id}>
+            <div className="users__user">
               <NavLink to={"/profile/" + u.id}>
                 <img
                   src={u.photos.small === null ? defaultPhoto : u.photos.small} alt='userPhoto'
-                  className={styles.photo}
+                  className="users__photo"
                 />
               </NavLink>
               {u.followed ? (
@@ -39,23 +31,11 @@ const FindUsers = (props) => {
                 }}>follow</button>
               )}
             </div>
-            <div className={styles.description}>
-              <div className={styles.text}>{u.name}</div>
-            </div>
+            <div className="users__text">{u.name}</div>
           </div>
         ))}
       </div>
-      <div className={styles.pagination}>
-        {pages.map((p) => (
-          <span
-            key={p}
-            className={props.currentPage === p && styles.selected}
-            onClick={() => props.onPageChanged(p)}
-          >
-            {p}
-          </span>
-        ))}
-      </div>
+      <Pagination totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged} portionSize={props.portionSize} />
     </div>
   )
 };

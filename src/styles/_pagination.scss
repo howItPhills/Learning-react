@@ -1,0 +1,24 @@
+.pagination {
+   font-size: 18px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   max-width: 97%;
+   margin: 0 auto;
+   > span {
+      cursor: pointer;
+      color: $dark;
+      align-self: center;
+      &:not(:last-child) {
+         margin-right: 5px;
+      }
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+   &__selected {
+      font-weight: bold;
+      font-size: 20px;
+   }
+}
