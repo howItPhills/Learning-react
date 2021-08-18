@@ -1,17 +1,12 @@
 .wrapper {
-   padding-top: 10px;
-   padding-left: 10px;
+   width: 80%;
 }
 
-.wrapper p {
-   margin: 0;
-   padding: 0;
-   font-weight: bold;
-   text-transform: uppercase;
-   font-size: 16px;
-   letter-spacing: 1px;
-   color: rgb(23, 116, 85);
-   margin-bottom: 5px;
+.nameWrapper {
+   padding-left: 10px;
+   position: relative;
+   display: flex;
+   margin-bottom: 15px;
 }
 
 .photo {
@@ -19,9 +14,44 @@
    height: 100px;
    object-fit: cover;
    border-radius: 50%;
+   margin-right: 20px;
+}
+
+.name {
+   font-size: 25px;
+   color: rgb(37, 37, 37);
+}
+
+.upload input {
+   display: none;
+   visibility: hidden;
+}
+
+.upload label {
+   position: absolute;
+   top: 29px;
+   left: 42px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   opacity: 0;
+}
+
+.upload label:hover {
+   opacity: 1;
+}
+
+.infoWrapper {
+   padding-left: 10px;
+}
+
+.infoWrapper div:not(:last-child) {
+   margin-bottom: 6px;
+}
+
+.contacts div:not(:last-child) {
    margin-bottom: 5px;
 }
 
-.wrapper .name {
-   font-size: 35px;
+.contacts div {
+   padding-left: 10px;
 }

@@ -1,19 +1,18 @@
 .users {
-   padding: 10px 0;
-   max-width: 720px;
-   margin: 0 auto;
+   width: 90%;
+   place-self: center;
    display: flex;
    flex-direction: column;
-   max-height: 400px;
+   max-height: 350px;
    flex-wrap: wrap;
    gap: 20px;
+   padding: 10px 10px 10px 10px;
    &__wrapper {
-      max-width: 180px;
-      gap: 10px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      gap: 30px;
    }
    &__user {
       display: flex;
@@ -45,9 +44,16 @@
       object-fit: cover;
    }
 
-   &__text {
+   &__name {
       font-weight: bold;
       font-size: 15px;
       color: $dark;
    }
+   &__status {
+      font-size: 14px;
+   }
+}
+
+.find-users {
+   display: grid;
 }

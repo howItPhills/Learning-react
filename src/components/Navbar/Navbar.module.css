@@ -2,11 +2,11 @@ ul {
    list-style-type: none;
    margin: 0;
    padding: 0;
+   padding: 10px;
 }
 
 .nav {
    border-radius: 10px;
-   padding: 10px;
    grid-area: n;
    place-self: start center;
    width: 100%;
@@ -42,13 +42,6 @@ ul {
 .nav li:last-child {
    margin-top: 50px;
 }
-
-/* a.activeLink {
-   color: #fff;
-   background: rgb(173, 62, 62);
-   border-bottom: none;
-   border-radius: 5px;
-} */
 
 a.activeLink:hover {
    text-decoration: none;

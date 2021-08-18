@@ -1,8 +1,9 @@
 import { dalAPI } from "../API/DalApi";
 
-const ADDPOST = 'ADD-POST';
-const SET_PROFILE = 'SET_PROFILE';
-const SET_STATUS = 'SET_STATUS';
+const ADDPOST = 'profile/ADD-POST';
+const SET_PROFILE = 'profile/SET_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
+const SET_PHOTO = 'profile/SET_PHOTO';
 
 let initialState = {
    posts: [
@@ -41,6 +42,11 @@ export const profileReducer = (state = initialState, action) => {
             ...state,
             status: action.status
          };
+      case SET_PHOTO:
+         return {
+            ...state,
+            profileInfo: { ...state.profileInfo, photos: action.photos }
+         };
       default:
          return state;
    }
@@ -49,21 +55,29 @@ export const profileReducer = (state = initialState, action) => {
 export const addPost = (post) => ({ type: 'ADD-POST', post });
 export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const setPhoto = (photos) => ({ type: SET_PHOTO, photos });
 
 
-export const getProfile = (userId) => (dispatch) => {
-   dalAPI.setProfile(userId).then((data) => {
-      dispatch(setProfile(data));
-   });
+export const getProfile = (userId) => async (dispatch) => {
+   const data = await dalAPI.setProfile(userId)
+   dispatch(setProfile(data));
 }
 
-export const getStatus = (id) => (dispatch) => {
-   dalAPI.getStatus(id).then(data => dispatch(setStatus(data)))
+export const getStatus = (id) => async (dispatch) => {
+   const data = await dalAPI.getStatus(id);
+   dispatch(setStatus(data))
 }
+
 export const updateStatus = (status) => (dispatch) => {
    dalAPI.updateStatus(status).then(data => {
       if (data.resultCode === 0) {
          dispatch(setStatus(status))
       }
+   })
+}
+
+export const updatePhoto = (file) => (dispatch) => {
+   dalAPI.updatePhoto(file).then(data => {
+      dispatch(setPhoto(data.data.photos))
    })
 }

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { logout } from "../../redux/authReducer";
 
 
-// "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fadvocate-logo-4.jpg&f=1&nofb=1"
 
 const Header = (props) => {
    return (

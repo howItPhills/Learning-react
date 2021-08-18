@@ -1,13 +1,14 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
+import Preloader from "../../../common/preloader";
 import defaultPhoto from "./../../../assets/nophoto.png";
 import Pagination from "./Pagination/Pagination";
 
 
-const FindUsers = (props) => {
-
+const FindUsers = React.memo((props) => {
   return (
-    <div>
-      <div className="users" >
+    <div className="find-users">
+      {props.isFetching ? <Preloader /> : <div className="users" >
         {props.users.map((u) => (
           <div className="users__wrapper" key={u.id}>
             <div className="users__user">
@@ -31,13 +32,16 @@ const FindUsers = (props) => {
                 }}>follow</button>
               )}
             </div>
-            <div className="users__text">{u.name}</div>
+            <div className="users__description">
+              <div className="users__name">{u.name}</div>
+              <div className="users__status">{u.status}</div>
+            </div>
           </div>
         ))}
-      </div>
+      </div>}
       <Pagination totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged} portionSize={props.portionSize} />
     </div>
   )
-};
+})
 
 export default FindUsers;

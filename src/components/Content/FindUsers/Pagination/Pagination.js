@@ -1,19 +1,19 @@
 import React from "react";
 import { useState } from "react";
 
-const Pagination = React.memo((props) => {
-   const pageAmount = Math.ceil(props.totalItemsCount / props.pageSize); // number of all pages
+let Pagination = React.memo((props) => {
+   let pageAmount = Math.ceil(props.totalItemsCount / props.pageSize); // number of all pages
 
-   const pages = [];
+   let pages = [];
 
    for (let i = 1; i <= pageAmount; i++) {
       pages.push(i);
    }
 
-   const portionCount = Math.ceil(pageAmount / props.portionSize) // number of all portions
-   const [currentPortionNumber, setPortionNumber] = useState(1);
-   const portionLeftBorder = (currentPortionNumber - 1) * props.portionSize + 1
-   const portionRightBorder = currentPortionNumber * props.portionSize;
+   let portionCount = Math.ceil(pageAmount / props.portionSize) // number of all portions
+   let [currentPortionNumber, setPortionNumber] = useState(1);
+   let portionLeftBorder = (currentPortionNumber - 1) * props.portionSize + 1
+   let portionRightBorder = currentPortionNumber * props.portionSize;
 
    return (
       <div className="pagination">
@@ -30,8 +30,9 @@ const Pagination = React.memo((props) => {
             ))}
          {currentPortionNumber < portionCount && <button onClick={() => setPortionNumber(currentPortionNumber + 1)}>next</button>}
       </div>
+
    )
-});
+})
 
 export default Pagination
 

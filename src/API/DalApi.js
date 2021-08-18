@@ -1,7 +1,6 @@
 import * as axios from "axios";
 
 const instance = axios.create({
-   null: null,
    withCredentials: true,
    baseURL: "https://social-network.samuraijs.com/api/1.0/",
    headers: {
@@ -36,5 +35,14 @@ export const dalAPI = {
    },
    logout() {
       return instance.delete(`/auth/login`).then(response => response.data)
+   },
+   updatePhoto(file) {
+      const formData = new FormData()
+      formData.append('image', file)
+      return instance.put(`/profile/photo`, formData, {
+         headers: {
+            'Content-Type': 'multipart/form-data'
+         }
+      }).then(response => response.data)
    }
 };

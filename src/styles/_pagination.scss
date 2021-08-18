@@ -6,6 +6,7 @@
    flex-wrap: wrap;
    max-width: 97%;
    margin: 0 auto;
+   user-select: none;
    > span {
       cursor: pointer;
       color: $dark;
@@ -19,6 +20,6 @@
    }
    &__selected {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 21px;
    }
 }

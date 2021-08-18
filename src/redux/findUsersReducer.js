@@ -1,9 +1,13 @@
 import { dalAPI } from "../API/DalApi";
+import { changeObjectInArray } from "../assets/functions/mapObject";
 
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const FOLLOWING_IN_PROGRESS = "FOLLOWING_IN_PROGRESS";
+const SET_CURRENT_PAGE = "findeUsers/SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "findeUsers/SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FETCHING = "findeUsers/TOGGLE_IS_FETCHING";
+const FOLLOWING_IN_PROGRESS = "findeUsers/FOLLOWING_IN_PROGRESS";
+const FOLLOW = "FOLLOW";
+const UNFOLLOW = "UNFOLLOW";
+const SET_USERS = "SET_USERS";
 
 let inintialState = {
    users: [],
@@ -16,27 +20,18 @@ let inintialState = {
 }
 
 export const findUsersReducer = (state = inintialState, action) => {
+
    switch (action.type) {
       case 'FOLLOW': {
          return {
             ...state,
-            users: state.users.map(u => {
-               if (u.id === action.userId) {
-                  return { ...u, followed: true }
-               }
-               return u;
-            })
+            users: changeObjectInArray(state.users, 'id', action.userId, { followed: true })
          }
       }
       case 'UNFOLLOW': {
          return {
             ...state,
-            users: state.users.map(u => {
-               if (u.id === action.userId) {
-                  return { ...u, followed: false }
-               }
-               return u;
-            })
+            users: changeObjectInArray(state.users, 'id', action.userId, { followed: false })
          }
       }
       case 'SET_USERS': {
@@ -74,53 +69,45 @@ export const findUsersReducer = (state = inintialState, action) => {
    }
 }
 
-export const follow = (userId) => ({ type: 'FOLLOW', userId });
-export const unfollow = (userId) => ({ type: 'UNFOLLOW', userId });
-export const setUsers = (users) => ({ type: 'SET_USERS', users });
+export const follow = (userId) => ({ type: FOLLOW, userId });
+export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
+export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const checkFollowInProgress = (isFetching, id) => ({ type: FOLLOWING_IN_PROGRESS, isFetching, id });
 
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const getUsers = (currentPage, pageSize) => async (dispatch) => {
    dispatch(toggleIsFetching(true));
-   dalAPI
-      .getUsers(currentPage, pageSize)
-      .then((data) => {
-         dispatch(toggleIsFetching(false));
-         dispatch(setUsers(data.items));
-         dispatch(setTotalUsersCount(data.totalCount));
-      });
+   const data = await dalAPI.getUsers(currentPage, pageSize);
+   dispatch(toggleIsFetching(false));
+   dispatch(setUsers(data.items));
+   dispatch(setTotalUsersCount(data.totalCount));
 }
 
-export const onPageChanged = (pageNumber, pageSize) => (dispatch) => {
+export const onPageChanged = (pageNumber, pageSize) => async (dispatch) => {
    dispatch(toggleIsFetching(true));
    dispatch(setCurrentPage(pageNumber));
-   dalAPI.getUsers(pageNumber, pageSize).then((data) => {
-      dispatch(toggleIsFetching(false))
-      dispatch(setUsers(data.items))
-   });
+   const data = await dalAPI.getUsers(pageNumber, pageSize);
+   dispatch(toggleIsFetching(false));
+   dispatch(setUsers(data.items));
 }
 
-export const unfollowing = (id) => (dispatch) => {
+
+const followUnfollowFlow = async (dispatch, id, dalMethod, actionCreator) => {
    dispatch(checkFollowInProgress(true, id))
-   dalAPI.unfollowUser(id).then((data) => {
-      if (data.resultCode === 0) {
-         dispatch(unfollow(id))
-      }
-      dispatch(checkFollowInProgress(false, id))
-
-   });
-}
-export const following = (id) => (dispatch) => {
-   dispatch(checkFollowInProgress(true, id))
-   dalAPI.followUser(id).then((data) => {
-      if (data.resultCode === 0) {
-         dispatch(follow(id))
-      }
-      dispatch(checkFollowInProgress(false, id))
-
-   });
+   const data = await dalMethod(id)
+   if (data.resultCode === 0) {
+      dispatch(actionCreator(id))
+   }
+   dispatch(checkFollowInProgress(false, id))
 }
 
+export const unfollowing = (id) => async (dispatch) => {
+   followUnfollowFlow(dispatch, id, dalAPI.unfollowUser.bind(dalAPI), unfollow)
+}
+
+export const following = (id) => async (dispatch) => {
+   followUnfollowFlow(dispatch, id, dalAPI.followUser.bind(dalAPI), follow)
+}

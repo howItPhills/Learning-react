@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-const StatusHooks = (props) => {
+const Status = React.memo((props) => {
 
    const [isEditing, setEditMode] = useState(false);
    const [status, setStatus] = useState(props.status);
@@ -11,8 +11,8 @@ const StatusHooks = (props) => {
       setStatus(props.status)
    }, [props.status])
 
-   const changeEditMode = () => {
-      setEditMode(true);
+   const openEditMode = () => {
+      props.isOwner && setEditMode(true);
    }
 
    const closeEditMode = () => {
@@ -28,11 +28,11 @@ const StatusHooks = (props) => {
       <div>
          <div>
             {!isEditing ?
-               <span onDoubleClick={changeEditMode}>{props.status || '...'}</span> :
+               <span onDoubleClick={openEditMode}>{props.status || '...'}</span> :
                <input autoFocus={true} onBlur={closeEditMode} value={status} onChange={onStatusChange} />}
          </div>
-      </div>
+      </div >
    )
-}
+})
 
-export default StatusHooks
+export default Status

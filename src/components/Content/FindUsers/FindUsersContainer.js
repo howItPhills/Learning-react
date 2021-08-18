@@ -7,7 +7,6 @@ import {
   following,
 } from "../../../redux/findUsersReducer";
 import FindUsers from "./FindUsers";
-import Preloader from "../../../common/preloader";
 import { compose } from "redux";
 
 
@@ -23,7 +22,6 @@ class FindUsersContainer extends React.Component {
 
 
   render() {
-    if (this.props.isFetching) return <Preloader />
     return <FindUsers
       totalUsersCount={this.props.totalUsersCount}
       pageSize={this.props.pageSize}
@@ -34,6 +32,7 @@ class FindUsersContainer extends React.Component {
       unfollowing={this.props.unfollowing}
       following={this.props.following}
       portionSize={this.props.portionSize}
+      isFetching={this.props.isFetching}
     />
   }
 }
