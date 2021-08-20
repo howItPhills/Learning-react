@@ -12,10 +12,7 @@
 }
 
 .input {
-   grid-column-start: 2;
-   width: 80%;
-   place-self: start center;
-   margin-bottom: 10px;
+   width: 70%;
 }
 
 .button {
@@ -23,4 +20,10 @@
    width: 20%;
    place-self: center end;
    margin-right: 40px;
+}
+
+.form {
+   grid-column-start: 2;
+   text-align: center;
+   padding: 10px 0;
 }

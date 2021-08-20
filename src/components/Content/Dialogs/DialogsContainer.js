@@ -6,7 +6,6 @@ import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
    return {
-      valueMessage: state.dialogsPage.valueMessage,
       dialogs: state.dialogsPage.dialogs,
       messages: state.dialogsPage.messages,
    }

@@ -44,7 +44,6 @@ const MapStateToProps = (state) => {
   return {
     posts: getPosts(state),
     friends: getFriends(state),
-    newPostText: state.profilePage.newPostText,
     profileInfo: state.profilePage.profileInfo,
     status: state.profilePage.status,
     authorizedId: state.auth.id,

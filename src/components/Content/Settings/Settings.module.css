@@ -1,0 +1,29 @@
+.div {
+   padding: 10px 0px;
+   width: 500px;
+   margin: 0 auto;
+}
+
+.titleWrapper {
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 1px solid #000;
+   margin-bottom: 15px;
+}
+
+.button {
+   display: inline-block;
+   all: unset;
+   cursor: pointer;
+   color: teal;
+   user-select: none;
+}
+
+.button:hover {
+   color: rgb(87, 201, 201);
+}
+
+.title {
+   display: inline-block;
+   margin-right: auto;
+}

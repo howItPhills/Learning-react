@@ -22,10 +22,10 @@ let initialState = {
 export const profileReducer = (state = initialState, action) => {
    switch (action.type) {
       case ADDPOST: {
-         let newPost = {
+         const newPost = {
             id: 5,
             message: action.post,
-            likesCount: 0,
+            likesCount: 2,
          }
          return {
             ...state,
@@ -52,14 +52,14 @@ export const profileReducer = (state = initialState, action) => {
    }
 }
 
-export const addPost = (post) => ({ type: 'ADD-POST', post });
+export const addPost = (post) => ({ type: ADDPOST, post });
 export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const setPhoto = (photos) => ({ type: SET_PHOTO, photos });
 
 
 export const getProfile = (userId) => async (dispatch) => {
-   const data = await dalAPI.setProfile(userId)
+   const data = await dalAPI.getProfile(userId)
    dispatch(setProfile(data));
 }
 
@@ -68,16 +68,21 @@ export const getStatus = (id) => async (dispatch) => {
    dispatch(setStatus(data))
 }
 
-export const updateStatus = (status) => (dispatch) => {
-   dalAPI.updateStatus(status).then(data => {
-      if (data.resultCode === 0) {
-         dispatch(setStatus(status))
-      }
-   })
+export const updateStatus = (status) => async (dispatch) => {
+   const data = await dalAPI.updateStatus(status)
+   if (data.resultCode === 0) {
+      dispatch(setStatus(status))
+   }
 }
 
-export const updatePhoto = (file) => (dispatch) => {
-   dalAPI.updatePhoto(file).then(data => {
-      dispatch(setPhoto(data.data.photos))
-   })
+export const updatePhoto = (file) => async (dispatch) => {
+   const data = await dalAPI.updatePhoto(file)
+   dispatch(setPhoto(data.data.photos))
+}
+export const updateProfile = (info) => async (dispatch, getState) => {
+   const userId = getState().auth.id
+   const data = await dalAPI.updateProfile(info)
+   if (data.resultCode === 0) {
+      dispatch(getProfile(userId))
+   }
 }

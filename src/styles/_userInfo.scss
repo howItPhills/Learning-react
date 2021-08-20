@@ -1,0 +1,74 @@
+.infoWrapper {
+   padding-left: 10px;
+   > div:not(:last-child) {
+      margin-bottom: 5px;
+   }
+   > div .bold {
+      color: rgb(75, 73, 73);
+   }
+}
+
+.contactsWrapper {
+   > div {
+      padding-left: 10px;
+      & .bold {
+         color: rgb(71, 134, 134);
+      }
+   }
+}
+
+.status {
+   cursor: pointer;
+}
+
+//Settings Page
+
+.infoItem {
+   margin-bottom: 25px;
+   display: flex;
+   justify-content: space-between;
+   & span {
+      display: inline-block;
+      max-width: 150px;
+   }
+}
+
+.bold {
+   font-weight: bold;
+}
+
+.jobDescription {
+   text-align: right;
+}
+
+.contact {
+   display: flex;
+   justify-content: space-between;
+   padding-left: 20px;
+   margin-bottom: 5px;
+}
+.infoValue {
+   opacity: 0.7;
+}
+
+.fieldWrapper {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 20px;
+}
+
+.submitInfo {
+   all: unset;
+   display: block;
+   margin-left: auto;
+   cursor: pointer;
+   color: teal;
+   font-size: 18px;
+   &:hover {
+      color: rgb(87, 201, 201);
+   }
+}
+
+.contactInput {
+   width: 50%;
+}

@@ -34,9 +34,11 @@ const LoginForm = (props) => {
             validationSchema={validationSchema}
          >
             <Form>
-               <TextField label="Email" name="email" type="text" />
-               <TextField label="Password" name="password" type="password" />
-               <TextField label="Remember me" name="rememberMe" type="checkbox" />
+               <div className={styles.fieldWrapper}>
+                  <TextField label="Email" name="email" type="text" className='email' />
+                  <TextField label="Password" name="password" type="password" className='password' />
+                  <TextField label="Remember me" name="rememberMe" type="checkbox" className='checkbox' />
+               </div>
                <button type="submit" className={styles.formButton}>Login</button>
             </Form>
          </Formik>

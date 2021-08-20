@@ -1,6 +1,6 @@
 .header {
-   padding: 10px 20px;
-   border-radius: 0px 0px 10px 10px;
+   padding: 8px 15px;
+   border-radius: 0px 0px 15px 15px;
    background: rgb(64, 193, 197);
    grid-area: h;
    display: flex;
@@ -14,7 +14,6 @@
    object-fit: cover;
    margin-right: 10px;
 }
-
 
 .logoName {
    font-weight: bold;
@@ -39,7 +38,7 @@
 
 .login:hover {
    background: #fff;
-   color: rgb(64, 193, 197);;
+   color: rgb(64, 193, 197);
    border: 2px solid #fff;
 }
 
@@ -76,6 +75,6 @@
 
 .logout:hover {
    background: #fff;
-   color: rgb(64, 193, 197);;
+   color: rgb(64, 193, 197);
    border: 2px solid #fff;
 }

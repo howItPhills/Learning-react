@@ -1,15 +1,14 @@
-import { ErrorMessage, useField } from "formik";
-import styles from './TextField.module.css'
+import { ErrorMessage, Field, useField } from "formik";
 
 const TextField = ({ label, ...props }) => {
-   const [field, meta] = useField(props);
+   const [field] = useField(props);
    return (
-      <div className={styles.field}>
-         <label htmlFor={field.name} className={styles.label}>{label}</label>
-         <input {...field} {...props} />
-         <ErrorMessage name={field.name} className={styles.error}>
+      <div className={props.fieldWrapper}>
+         <label htmlFor={field.name}>{label}</label>
+         <Field as={props.as} {...field} {...props} />
+         <ErrorMessage name={field.name}>
             {
-               errorMsg => <div className={styles.error}>{errorMsg}</div>
+               errorMsg => <div className='error'>{errorMsg}</div>
             }
          </ErrorMessage>
       </div>

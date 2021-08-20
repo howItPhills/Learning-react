@@ -39,19 +39,3 @@
 .upload label:hover {
    opacity: 1;
 }
-
-.infoWrapper {
-   padding-left: 10px;
-}
-
-.infoWrapper div:not(:last-child) {
-   margin-bottom: 6px;
-}
-
-.contacts div:not(:last-child) {
-   margin-bottom: 5px;
-}
-
-.contacts div {
-   padding-left: 10px;
-}

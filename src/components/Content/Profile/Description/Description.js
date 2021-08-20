@@ -1,8 +1,8 @@
 import styles from './Description.module.css';
-import FriendsContainer from './Friends/FriendsContainer';
 import defaultPhoto from '../../../../assets/nophoto.png';
 import Status from './Status/Status';
 import uploadIcon from '../../../../assets/uploadIcon.svg'
+import UserInfo from './userProfileInfo/UserInfo';
 
 const Description = ({ updatePhoto, profileInfo, ...props }) => {
    const onPhotoChange = (e) => {
@@ -24,44 +24,9 @@ const Description = ({ updatePhoto, profileInfo, ...props }) => {
                <Status status={props.status} updateStatus={props.updateStatus} isOwner={props.isOwner} />
             </div>
          </div>
-         <div className={styles.infoWrapper}>
-            <div>
-               <strong>About me: </strong>{profileInfo.aboutMe || 'no info'}
-            </div>
-            <div>
-               <strong>Looking for a job: </strong>{profileInfo.lookingForAJob ? 'yes' : 'no info'}
-            </div>
-            {
-               profileInfo.lookingForAJob &&
-               <div>
-                  <strong>Looking for a job description: </strong>{profileInfo.lookingForAJobDescription || 'no info'}
-               </div>
-            }
-            <div className={styles.contacts}>
-               <strong>Contacts: </strong>{Object.keys(profileInfo.contacts).map(key => {
-                  return <Contacts contactTitle={key} contactValue={profileInfo.contacts[key]} />
-               })}
-            </div>
-
-         </div>
+         <UserInfo profileInfo={profileInfo} infoWrapper='infoWrapper' contactsWrapper="contactsWrapper" bold='bold' />
       </div>
    )
 }
-
-const Contacts = ({ contactTitle, contactValue }) => {
-
-   return (
-      <div>
-         {contactValue ?
-            <div>
-               <strong>{contactTitle}: </strong> {contactValue}
-            </div> :
-            <div>
-               <strong>{contactTitle}: </strong> {'no info'}
-            </div>}
-      </div>
-   )
-}
-
 
 export default Description;

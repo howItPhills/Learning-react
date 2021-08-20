@@ -13,6 +13,7 @@ const MyPosts = React.memo(props => {
 
    const onSubmit = (values) => {
       props.addPost(values.post);
+      console.log(values);
    }
 
    const validationSchema = yup.object({

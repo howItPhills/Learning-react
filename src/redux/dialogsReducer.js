@@ -19,7 +19,7 @@ export const dialogsReducer = (state = inintialState, action) => {
       case ADDMESSAGE: {
          let newMessage = {
             id: 4,
-            message: action.newMessage,
+            message: action.message,
          }
          return {
             ...state,
@@ -31,4 +31,4 @@ export const dialogsReducer = (state = inintialState, action) => {
    }
 }
 
-export const sendMessage = (newMessage) => ({ type: 'ADD-MESSAGE', newMessage });
+export const sendMessage = (message) => ({ type: 'ADD-MESSAGE', message });

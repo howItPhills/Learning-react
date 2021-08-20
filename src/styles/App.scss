@@ -1,6 +1,8 @@
 @import "variables";
 @import "pagination";
 @import "findUsers";
+@import "textField";
+@import "userInfo";
 
 .app-wrapper {
    max-width: 1000px;
@@ -11,7 +13,7 @@
    grid-template-areas:
       "h h"
       "n c";
-   gap: 10px;
+   gap: 15px;
 
    &-content {
       width: 100%;

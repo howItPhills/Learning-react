@@ -130,6 +130,113 @@
   display: grid;
 }
 
+.error {
+  color: red;
+}
+
+.email,
+.password {
+  width: 70%;
+  border-radius: 5px;
+  padding: 10px;
+  outline: none;
+  border: 2px solid #b3aaaa;
+  margin-bottom: 5px;
+}
+
+.checkbox {
+  margin-left: 5px;
+}
+
+.infoWrapper {
+  padding-left: 10px;
+}
+
+.infoWrapper > div:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.infoWrapper > div .bold {
+  color: #4b4949;
+}
+
+.contactsWrapper > div {
+  padding-left: 10px;
+}
+
+.contactsWrapper > div .bold {
+  color: #478686;
+}
+
+.status {
+  cursor: pointer;
+}
+
+.infoItem {
+  margin-bottom: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.infoItem span {
+  display: inline-block;
+  max-width: 150px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.jobDescription {
+  text-align: right;
+}
+
+.contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+
+.infoValue {
+  opacity: 0.7;
+}
+
+.fieldWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.submitInfo {
+  all: unset;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+  color: teal;
+  font-size: 18px;
+}
+
+.submitInfo:hover {
+  color: #57c9c9;
+}
+
+.contactInput {
+  width: 50%;
+}
+
 .app-wrapper {
   max-width: 1000px;
   margin: 0 auto;
@@ -140,7 +247,7 @@
   -ms-grid-columns: 1fr 6fr;
       grid-template-columns: 1fr 6fr;
       grid-template-areas: "h h" "n c";
-  gap: 10px;
+  gap: 15px;
 }
 
 .app-wrapper-content {

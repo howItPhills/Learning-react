@@ -18,7 +18,7 @@ export const dalAPI = {
    unfollowUser(id) {
       return instance.delete(`follow/${id}`).then((response) => response.data);
    },
-   setProfile(id) {
+   getProfile(id) {
       return instance.get(`profile/${id}`).then((response) => response.data);
    },
    requestUsersData() {
@@ -44,5 +44,8 @@ export const dalAPI = {
             'Content-Type': 'multipart/form-data'
          }
       }).then(response => response.data)
+   },
+   updateProfile(info) {
+      return instance.put(`/profile`, info).then(response => response.data)
    }
 };

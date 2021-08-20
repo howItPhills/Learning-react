@@ -12,7 +12,7 @@ const Dialogs = (props) => {
       message: ''
    }
 
-   const onSubmit = values => {
+   const onSubmit = (values) => {
       props.sendMessage(values.message)
    }
 
@@ -26,7 +26,6 @@ const Dialogs = (props) => {
    let messagesElement =
       props.messages.map(m => <Message message={m.message} key={m.id} />);
 
-   // if (!props.isAuthorized) return <Redirect to="/login" />
 
    return (
       <div className={styles.dialogs}>
@@ -37,8 +36,8 @@ const Dialogs = (props) => {
             {messagesElement}
          </div>
          <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-            <Form>
-               <Field type='text' name='message' id='message' />
+            <Form className={styles.form}>
+               <Field type='text' name='message' id='message' className={styles.input} />
                <button type='submit'>Send</button>
             </Form>
          </Formik>
