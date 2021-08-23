@@ -15,3 +15,12 @@
 .checkbox {
    margin-left: 5px;
 }
+
+.fieldWrapper {
+   display: flex;
+   margin-bottom: 20px;
+   & input,
+   textarea {
+      margin-left: auto;
+   }
+}

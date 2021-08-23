@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import Preloader from './common/preloader';
+import CloudContainer from './components/Cloud/CloudContainer';
 import Content from './components/Content/Content'
 import Header from './components/Header/Header';
 import Nav from './components/Navbar/Nav';
@@ -19,6 +20,7 @@ class App extends React.Component {
         <Header />
         <Nav />
         <Content />
+        <CloudContainer />
       </div>
     )
   }

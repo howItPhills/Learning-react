@@ -28,7 +28,7 @@ const Status = React.memo((props) => {
       <div>
          <div>
             {!isEditing ?
-               <span onClick={openEditMode} className={props.isOwner && 'status'}>{props.status || '...'}</span> :
+               <span onClick={openEditMode} className={props.isOwner ? 'status' : null}>{props.status || '...'}</span> :
                <input autoFocus={true} onBlur={closeEditMode} value={status} onChange={onStatusChange} />}
          </div>
       </div >

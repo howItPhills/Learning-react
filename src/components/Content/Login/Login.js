@@ -33,11 +33,15 @@ const LoginForm = (props) => {
             onSubmit={onSubmit}
             validationSchema={validationSchema}
          >
-            <Form>
+            <Form name='form'>
                <div className={styles.fieldWrapper}>
                   <TextField label="Email" name="email" type="text" className='email' />
                   <TextField label="Password" name="password" type="password" className='password' />
                   <TextField label="Remember me" name="rememberMe" type="checkbox" className='checkbox' />
+                  {props.errorMessage &&
+                     <div className={styles.errorMessage}>
+                        {props.errorMessage}
+                     </div>}
                </div>
                <button type="submit" className={styles.formButton}>Login</button>
             </Form>
@@ -49,6 +53,7 @@ const LoginForm = (props) => {
 const mapStateToProps = (state) => {
    return {
       isAuthorized: state.auth.isAuthorized,
+      errorMessage: state.auth.errorMessage,
    }
 }
 

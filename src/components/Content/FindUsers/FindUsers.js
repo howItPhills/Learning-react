@@ -14,7 +14,7 @@ const FindUsers = React.memo((props) => {
             <div className="users__user">
               <NavLink to={"/profile/" + u.id}>
                 <img
-                  src={u.photos.small === null ? defaultPhoto : u.photos.small} alt='userPhoto'
+                  src={u.photos.small || defaultPhoto} alt='userPhoto'
                   className="users__photo"
                 />
               </NavLink>

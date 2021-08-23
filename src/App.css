@@ -148,6 +148,18 @@
   margin-left: 5px;
 }
 
+.fieldWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.fieldWrapper input,
+.fieldWrapper textarea {
+  margin-left: auto;
+}
+
 .infoWrapper {
   padding-left: 10px;
 }
@@ -170,6 +182,10 @@
 
 .status {
   cursor: pointer;
+}
+
+.status:hover {
+  text-decoration: underline;
 }
 
 .infoItem {
@@ -199,25 +215,15 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding-left: 20px;
+  margin-bottom: 20px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding-left: 20px;
-  margin-bottom: 5px;
 }
 
 .infoValue {
   opacity: 0.7;
-}
-
-.fieldWrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .submitInfo {
@@ -227,14 +233,14 @@
   cursor: pointer;
   color: teal;
   font-size: 18px;
+  border: 1px solid teal;
+  padding: 2px 7px;
+  border-radius: 10px;
 }
 
 .submitInfo:hover {
   color: #57c9c9;
-}
-
-.contactInput {
-  width: 50%;
+  border: 1px solid #57c9c9;
 }
 
 .app-wrapper {
@@ -242,11 +248,11 @@
   margin: 0 auto;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr;
-      grid-template-rows: 1fr;
-  -ms-grid-columns: 1fr 6fr;
-      grid-template-columns: 1fr 6fr;
-      grid-template-areas: "h h" "n c";
+  -ms-grid-rows: 0.1fr 55px 1fr;
+      grid-template-rows: 0.1fr 55px 1fr;
+  -ms-grid-columns: 1fr 5.5fr;
+      grid-template-columns: 1fr 5.5fr;
+      grid-template-areas: "h h" "cl c" "n c";
   gap: 15px;
 }
 
@@ -254,6 +260,7 @@
   width: 100%;
   background: snow;
   -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
   -ms-grid-column: 2;
   grid-area: c;
   border-radius: 10px;

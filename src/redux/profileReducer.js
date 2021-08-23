@@ -4,6 +4,7 @@ const ADDPOST = 'profile/ADD-POST';
 const SET_PROFILE = 'profile/SET_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const SET_PHOTO = 'profile/SET_PHOTO';
+const SET_PROFILE_ClOUD = 'profile/SET_PROFILE_ClOUD';
 
 let initialState = {
    posts: [
@@ -16,6 +17,7 @@ let initialState = {
       { id: 3, src: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.businessinsider.com%2Fimage%2F52a5eabc69bedd1379312cf4%2Fimage.jpg&f=1&nofb=1" },
    ],
    profileInfo: null,
+   profileInfoCloud: null,
    status: ''
 }
 
@@ -45,7 +47,13 @@ export const profileReducer = (state = initialState, action) => {
       case SET_PHOTO:
          return {
             ...state,
-            profileInfo: { ...state.profileInfo, photos: action.photos }
+            profileInfo: { ...state.profileInfo, photos: action.photos },
+            profileInfoCloud: { ...state.profileInfo, photos: action.photos }
+         };
+      case SET_PROFILE_ClOUD:
+         return {
+            ...state,
+            profileInfoCloud: action.profileInfoCloud
          };
       default:
          return state;
@@ -54,13 +62,19 @@ export const profileReducer = (state = initialState, action) => {
 
 export const addPost = (post) => ({ type: ADDPOST, post });
 export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
+export const setProfileCloud = (profileInfoCloud) => ({ type: SET_PROFILE_ClOUD, profileInfoCloud });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const setPhoto = (photos) => ({ type: SET_PHOTO, photos });
+
 
 
 export const getProfile = (userId) => async (dispatch) => {
    const data = await dalAPI.getProfile(userId)
    dispatch(setProfile(data));
+}
+export const getProfileCloud = (authorizedId) => async (dispatch) => {
+   const data = await dalAPI.getProfile(authorizedId)
+   dispatch(setProfileCloud(data));
 }
 
 export const getStatus = (id) => async (dispatch) => {
@@ -84,5 +98,6 @@ export const updateProfile = (info) => async (dispatch, getState) => {
    const data = await dalAPI.updateProfile(info)
    if (data.resultCode === 0) {
       dispatch(getProfile(userId))
+      dispatch(getProfileCloud(userId))
    }
 }

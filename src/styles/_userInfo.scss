@@ -19,6 +19,9 @@
 
 .status {
    cursor: pointer;
+   &:hover {
+      text-decoration: underline;
+   }
 }
 
 //Settings Page
@@ -43,18 +46,12 @@
 
 .contact {
    display: flex;
-   justify-content: space-between;
    padding-left: 20px;
-   margin-bottom: 5px;
+   margin-bottom: 20px;
+   justify-content: space-between;
 }
 .infoValue {
    opacity: 0.7;
-}
-
-.fieldWrapper {
-   display: flex;
-   justify-content: space-between;
-   margin-bottom: 20px;
 }
 
 .submitInfo {
@@ -64,11 +61,11 @@
    cursor: pointer;
    color: teal;
    font-size: 18px;
+   border: 1px solid teal;
+   padding: 2px 7px;
+   border-radius: 10px;
    &:hover {
       color: rgb(87, 201, 201);
+      border: 1px solid rgb(87, 201, 201);
    }
-}
-
-.contactInput {
-   width: 50%;
 }

@@ -3,7 +3,7 @@ import { ErrorMessage, Field, useField } from "formik";
 const TextField = ({ label, ...props }) => {
    const [field] = useField(props);
    return (
-      <div className={props.fieldWrapper}>
+      <div className={props.fieldwrapper}>
          <label htmlFor={field.name}>{label}</label>
          <Field as={props.as} {...field} {...props} />
          <ErrorMessage name={field.name}>
