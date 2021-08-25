@@ -3,16 +3,18 @@
    place-self: center;
    display: flex;
    flex-direction: column;
-   max-height: 350px;
+   max-height: 400px;
    flex-wrap: wrap;
    gap: 20px;
-   padding: 10px 10px 10px 10px;
+   padding: 15px 10px 0px 10px;
+   margin-bottom: 50px;
    &__wrapper {
+      width: 250px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 30px;
+      gap: 20px;
    }
    &__user {
       display: flex;
@@ -48,9 +50,20 @@
       font-weight: bold;
       font-size: 15px;
       color: $dark;
+      width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
    }
    &__status {
       font-size: 14px;
+      width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+   }
+   &__pagination {
+      padding-bottom: 10px;
    }
 }
 

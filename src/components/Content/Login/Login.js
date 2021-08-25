@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import * as Yup from 'yup';
 import styles from './Login.module.css';
@@ -12,6 +12,7 @@ const LoginForm = (props) => {
       email: '',
       password: '',
       rememberMe: true,
+      captcha: '',
    }
 
    const validationSchema = Yup.object({
@@ -20,8 +21,8 @@ const LoginForm = (props) => {
    })
 
    const onSubmit = values => {
-      const { email, password, rememberMe } = values;
-      props.login(email, password, rememberMe);
+      const { email, password, rememberMe, captcha } = values;
+      props.login(email, password, rememberMe, captcha);
    }
 
    if (props.isAuthorized) return <Redirect to='/profile' /> // checking authorization
@@ -38,6 +39,11 @@ const LoginForm = (props) => {
                   <TextField label="Email" name="email" type="text" className='email' />
                   <TextField label="Password" name="password" type="password" className='password' />
                   <TextField label="Remember me" name="rememberMe" type="checkbox" className='checkbox' />
+                  {props.captcha &&
+                     <div className={styles.captcha}>
+                        <img src={props.captcha} alt='captcha' />
+                        <Field name='captcha' type='text' />
+                     </div>}
                   {props.errorMessage &&
                      <div className={styles.errorMessage}>
                         {props.errorMessage}
@@ -54,6 +60,7 @@ const mapStateToProps = (state) => {
    return {
       isAuthorized: state.auth.isAuthorized,
       errorMessage: state.auth.errorMessage,
+      captcha: state.auth.captcha,
    }
 }
 

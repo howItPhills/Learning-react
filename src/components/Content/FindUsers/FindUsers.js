@@ -39,7 +39,18 @@ const FindUsers = React.memo((props) => {
           </div>
         ))}
       </div>}
-      <Pagination totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged} portionSize={props.portionSize} />
+      <div className='users__pagination'>
+        <Pagination
+          totalItemsCount={props.totalUsersCount}
+          pageSize={props.pageSize}
+          currentPage={props.currentPage}
+          onPageChanged={props.onPageChanged}
+          portionSize={props.portionSize}
+          currentPortionNumber={props.currentPortionNumber}
+          setCurrentPortionNumber={props.setCurrentPortionNumber}
+        />
+
+      </div>
     </div>
   )
 })

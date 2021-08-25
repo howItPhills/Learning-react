@@ -19,7 +19,20 @@
           user-select: none;
 }
 
-.pagination > span {
+.pagination__pages {
+  margin: 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pagination__pages span {
+  border: 1px solid #9b9898;
+  padding: 3px;
+  border-radius: 5px;
   cursor: pointer;
   color: #454f55;
   -ms-flex-item-align: center;
@@ -27,17 +40,21 @@
       align-self: center;
 }
 
-.pagination > span:not(:last-child) {
+.pagination__pages span:not(:last-child) {
   margin-right: 5px;
 }
 
-.pagination > span:hover {
-  text-decoration: underline;
+.pagination__pages .pagination__selected {
+  color: #fff;
+  background: #a19e9e;
 }
 
-.pagination__selected {
+.pagination button {
+  padding: 5px;
+  text-transform: uppercase;
   font-weight: bold;
-  font-size: 21px;
+  color: #4e4b4b;
+  font-size: 11px;
 }
 
 .users {
@@ -50,14 +67,16 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  max-height: 350px;
+  max-height: 400px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 20px;
-  padding: 10px 10px 10px 10px;
+  padding: 15px 10px 0px 10px;
+  margin-bottom: 50px;
 }
 
 .users__wrapper {
+  width: 250px;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,7 +87,7 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  gap: 30px;
+  gap: 20px;
 }
 
 .users__user {
@@ -119,10 +138,22 @@
   font-weight: bold;
   font-size: 15px;
   color: #454f55;
+  width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .users__status {
   font-size: 14px;
+  width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.users__pagination {
+  padding-bottom: 10px;
 }
 
 .find-users {
@@ -169,7 +200,7 @@
 }
 
 .infoWrapper > div .bold {
-  color: #4b4949;
+  color: #918b8b;
 }
 
 .contactsWrapper > div {
@@ -177,7 +208,7 @@
 }
 
 .contactsWrapper > div .bold {
-  color: #478686;
+  color: #6ba8a8;
 }
 
 .status {
@@ -266,4 +297,6 @@
   border-radius: 10px;
   display: -ms-grid;
   display: grid;
+  -webkit-box-shadow: 0px 0px 5px #cac4c4;
+          box-shadow: 0px 0px 5px #cac4c4;
 }

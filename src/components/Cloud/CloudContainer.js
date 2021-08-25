@@ -9,9 +9,13 @@ class CloudContainer extends Component {
       this.props.isAuthorized && this.props.getProfileCloud(this.props.authorizedId);
    }
 
+   componentDidUpdate(prevProps) {
+      this.props.isAuthorized !== prevProps.isAuthorized && this.props.authorizedId && this.props.getProfileCloud(this.props.authorizedId);
+   }
+
    render() {
       return (
-         <Cloud profileInfoCloud={this.props.profileInfoCloud} />
+         <Cloud profileInfoCloud={this.props.profileInfoCloud} isAuthorized={this.props.isAuthorized} />
       )
    }
 }

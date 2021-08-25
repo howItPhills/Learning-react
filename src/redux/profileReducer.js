@@ -35,25 +35,17 @@ export const profileReducer = (state = initialState, action) => {
          };
       }
       case SET_PROFILE:
-         return {
-            ...state,
-            profileInfo: action.profileInfo
-         };
+      case SET_PROFILE_ClOUD:
       case SET_STATUS:
          return {
             ...state,
-            status: action.status
+            ...action.payload
          };
       case SET_PHOTO:
          return {
             ...state,
             profileInfo: { ...state.profileInfo, photos: action.photos },
-            profileInfoCloud: { ...state.profileInfo, photos: action.photos }
-         };
-      case SET_PROFILE_ClOUD:
-         return {
-            ...state,
-            profileInfoCloud: action.profileInfoCloud
+            profileInfoCloud: { ...state.profileInfoCloud, photos: action.photos }
          };
       default:
          return state;
@@ -61,20 +53,22 @@ export const profileReducer = (state = initialState, action) => {
 }
 
 export const addPost = (post) => ({ type: ADDPOST, post });
-export const setProfile = (profileInfo) => ({ type: SET_PROFILE, profileInfo });
-export const setProfileCloud = (profileInfoCloud) => ({ type: SET_PROFILE_ClOUD, profileInfoCloud });
-export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const setProfile = (profileInfo) => ({ type: SET_PROFILE, payload: { profileInfo } });
+export const setProfileCloud = (profileInfoCloud) => ({ type: SET_PROFILE_ClOUD, payload: { profileInfoCloud } });
+export const setStatus = (status) => ({ type: SET_STATUS, payload: { status } });
 export const setPhoto = (photos) => ({ type: SET_PHOTO, photos });
 
 
+const getProfileBody = async (id, actionCreator, dispatch) => {
+   const data = await dalAPI.getProfile(id)
+   dispatch(actionCreator(data));
+}
 
 export const getProfile = (userId) => async (dispatch) => {
-   const data = await dalAPI.getProfile(userId)
-   dispatch(setProfile(data));
+   getProfileBody(userId, setProfile, dispatch)
 }
 export const getProfileCloud = (authorizedId) => async (dispatch) => {
-   const data = await dalAPI.getProfile(authorizedId)
-   dispatch(setProfileCloud(data));
+   getProfileBody(authorizedId, setProfileCloud, dispatch)
 }
 
 export const getStatus = (id) => async (dispatch) => {

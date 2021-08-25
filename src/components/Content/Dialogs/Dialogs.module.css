@@ -22,7 +22,7 @@
    margin-right: 40px;
 }
 
-.form {
+.inputWrapper {
    grid-column-start: 2;
    text-align: center;
    padding: 10px 0;

@@ -24,7 +24,6 @@ const SettingsForm = ({ profileInfo, updateProfile, setEditMode }) => {
       updateProfile(values);
       setEditMode(false)
    }
-
    const validateUrl = Yup.string().matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
       'Enter correct url!');
@@ -35,16 +34,7 @@ const SettingsForm = ({ profileInfo, updateProfile, setEditMode }) => {
       aboutMe: Yup.string().required('Required'),
       lookingForAJobDescription: Yup.string().required('Required'),
       contacts: Yup.object(
-         {
-            facebook: validateUrl,
-            website: validateUrl,
-            vk: validateUrl,
-            twitter: validateUrl,
-            instagram: validateUrl,
-            youtube: validateUrl,
-            github: validateUrl,
-            mainLink: validateUrl,
-         }
+         Object.fromEntries(Object.entries(profileInfo.contacts).map(([key, value]) => [key, value = validateUrl]))
       )
    })
 

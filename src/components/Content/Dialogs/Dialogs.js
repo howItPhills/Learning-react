@@ -1,9 +1,8 @@
 import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
-import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
-
+import InputField from '../../../assets/functions/withFormikField'
 
 
 const Dialogs = (props) => {
@@ -35,12 +34,9 @@ const Dialogs = (props) => {
          <div className={styles.messages}>
             {messagesElement}
          </div>
-         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-            <Form className={styles.form}>
-               <Field type='text' name='message' id='message' className={styles.input} />
-               <button type='submit'>Send</button>
-            </Form>
-         </Formik>
+         <div className={styles.inputWrapper}>
+            <InputField initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema} as='textarea' name='message' placeholder='Type any message, my friend...' />
+         </div>
       </div>
 
    )

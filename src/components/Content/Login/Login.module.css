@@ -55,3 +55,14 @@ div .errorMessage {
    padding: 5px 0px;
    border-radius: 10px;
 }
+
+.captcha {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.captcha img,
+.captcha input {
+   width: 40%;
+}

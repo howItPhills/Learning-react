@@ -1,8 +1,8 @@
 import * as yup from 'yup';
-import { Field, Form, Formik } from 'formik';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from 'react';
+import InputField from '../../../../assets/functions/withFormikField';
 
 
 const MyPosts = React.memo(props => {
@@ -11,9 +11,9 @@ const MyPosts = React.memo(props => {
       post: '',
    }
 
-   const onSubmit = (values) => {
+   const onSubmit = (values, { resetForm }) => {
       props.addPost(values.post);
-      console.log(values);
+      resetForm(initialValues);
    }
 
    const validationSchema = yup.object({
@@ -28,12 +28,7 @@ const MyPosts = React.memo(props => {
             My activity
          </h3>
          <div className={styles.inputWrapper}>
-            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-               <Form>
-                  <Field type='text' name='post' id='post' />
-                  <button type='submit'>Send</button>
-               </Form>
-            </Formik>
+            <InputField initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} type='text' name='post' as='textarea' placeholder='Write your thoughts...' />
          </div>
          {postsElements}
       </div>

@@ -5,6 +5,7 @@ import {
   onPageChanged,
   unfollowing,
   following,
+  setCurrentPortionNumber,
 } from "../../../redux/findUsersReducer";
 import FindUsers from "./FindUsers";
 import { compose } from "redux";
@@ -33,6 +34,8 @@ class FindUsersContainer extends React.Component {
       following={this.props.following}
       portionSize={this.props.portionSize}
       isFetching={this.props.isFetching}
+      currentPortionNumber={this.props.currentPortionNumber}
+      setCurrentPortionNumber={this.props.setCurrentPortionNumber}
     />
   }
 }
@@ -46,6 +49,7 @@ const mapStateToProps = (state) => {
     followInProgress: state.findUsersPage.followInProgress,
     isFetching: state.findUsersPage.isFetching,
     portionSize: state.findUsersPage.portionSize,
+    currentPortionNumber: state.findUsersPage.currentPortionNumber,
   };
 };
 
@@ -54,4 +58,5 @@ export default compose(connect(mapStateToProps, {
   getUsers,
   unfollowing,
   following,
+  setCurrentPortionNumber,
 }))(FindUsersContainer);

@@ -38,8 +38,6 @@ class ProfileContainer extends React.Component {
 }
 
 
-
-
 const MapStateToProps = (state) => {
   return {
     posts: getPosts(state),
@@ -49,8 +47,6 @@ const MapStateToProps = (state) => {
     authorizedId: state.auth.id,
   };
 };
-
-
 
 
 export default compose(withAuthRedirect, connect(MapStateToProps, {
