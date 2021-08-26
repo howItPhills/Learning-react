@@ -15,32 +15,28 @@ let Pagination = React.memo((props) => {
    const portionLeftBorder = (currentPortionNumber - 1) * props.portionSize + 1
    const portionRightBorder = currentPortionNumber * props.portionSize;
 
-   const onCurrentPortionChange = (plus) => {
-      if (plus) {
-         setPortionNumber(currentPortionNumber + 1)
-         props.setCurrentPortionNumber(currentPortionNumber + 1)
-      } else {
-         setPortionNumber(currentPortionNumber - 1);
-         props.setCurrentPortionNumber(currentPortionNumber - 1);
-      }
+
+   const onPageClick = (page, currentPortion) => {
+      props.onPageChanged(page);
+      props.setCurrentPortionNumber(currentPortion);
    }
 
    return (
       <div className="pagination">
-         {currentPortionNumber > 1 && <button onClick={() => onCurrentPortionChange(false)} className='pagination__prev'>prev</button>}
+         {currentPortionNumber > 1 && <button onClick={() => setPortionNumber(currentPortionNumber - 1)} className='pagination__prev'>prev</button>}
          <div className="pagination__pages">
             {pages.filter(p => p >= portionLeftBorder && p <= portionRightBorder)
                .map((p) => (
                   <span
                      key={p}
                      className={props.currentPage === p ? "pagination__selected" : null}
-                     onClick={() => props.onPageChanged(p)}
+                     onClick={() => p !== props.currentPage && onPageClick(p, currentPortionNumber)}
                   >
                      {p}
                   </span>
                ))}
          </div>
-         {currentPortionNumber < portionCount && <button onClick={() => onCurrentPortionChange(true)} className='pagination__next'>next</button>}
+         {currentPortionNumber < portionCount && <button onClick={() => setPortionNumber(currentPortionNumber + 1)} className='pagination__next'>next</button>}
       </div>
 
    )

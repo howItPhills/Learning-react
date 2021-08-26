@@ -7,8 +7,8 @@ import Pagination from "./Pagination/Pagination";
 
 const FindUsers = React.memo((props) => {
   return (
-    <div className="find-users">
-      {props.isFetching ? <Preloader /> : <div className="users" >
+    <div className="findusers">
+      {props.isFetching ? <div className="findusers__preloader"><Preloader /></div> : <div className="users" >
         {props.users.map((u) => (
           <div className="users__wrapper" key={u.id}>
             <div className="users__user">
@@ -32,10 +32,10 @@ const FindUsers = React.memo((props) => {
                 }}>follow</button>
               )}
             </div>
-            <div className="users__description">
+            <NavLink to={`/profile/${u.id}`} className="users__description">
               <div className="users__name">{u.name}</div>
               <div className="users__status">{u.status}</div>
-            </div>
+            </NavLink>
           </div>
         ))}
       </div>}
@@ -49,7 +49,6 @@ const FindUsers = React.memo((props) => {
           currentPortionNumber={props.currentPortionNumber}
           setCurrentPortionNumber={props.setCurrentPortionNumber}
         />
-
       </div>
     </div>
   )

@@ -9,12 +9,17 @@
    padding: 15px 10px 0px 10px;
    margin-bottom: 50px;
    &__wrapper {
-      width: 250px;
+      padding: 10px 0px 10px 15px;
       border-radius: 10px;
+      box-shadow: 0px 0px 3px rgb(202, 196, 196);
       display: flex;
       align-items: center;
       justify-content: flex-start;
       gap: 20px;
+      transition: transform 0.3s ease;
+      &:hover {
+         transform: scale(1.03);
+      }
    }
    &__user {
       display: flex;
@@ -31,7 +36,7 @@
          font-weight: bold;
          color: $dark;
          border: 2px solid $dark;
-         padding: 2px 8px;
+         padding: 2px 5px;
          user-select: none;
          font-size: 12px;
          &:disabled {
@@ -57,6 +62,7 @@
    }
    &__status {
       font-size: 14px;
+      color: $dark;
       width: 130px;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -67,6 +73,9 @@
    }
 }
 
-.find-users {
+.findusers {
    display: grid;
+   &__preloader {
+      margin-bottom: 211px;
+   }
 }
