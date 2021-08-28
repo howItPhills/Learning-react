@@ -16,7 +16,7 @@ const Dialogs = (props) => {
    }
 
    const validationSchema = yup.object({
-      message: yup.string().required('Write a message'),
+      message: yup.string().trim().required('Write a message'),
    })
 
    let dialogsElement =

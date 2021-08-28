@@ -1,3 +1,4 @@
+@import "global";
 @import "variables";
 @import "pagination";
 @import "findUsers";
@@ -24,4 +25,8 @@
       display: grid;
       box-shadow: 0px 0px 5px rgb(202, 196, 196);
    }
+}
+
+.app-preloader {
+   margin-top: 250px;
 }

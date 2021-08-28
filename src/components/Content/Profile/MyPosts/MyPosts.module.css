@@ -58,8 +58,7 @@ h3 {
    transition: all 0.3s ease;
 }
 
-.inputWrapper button:hover,
-.inputWrapper button:focus {
+.inputWrapper button:hover {
    background: rgb(179, 172, 172);
    color: #fff;
 }

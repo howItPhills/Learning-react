@@ -24,15 +24,15 @@ const SettingsForm = ({ profileInfo, updateProfile, setEditMode }) => {
       updateProfile(values);
       setEditMode(false)
    }
-   const validateUrl = Yup.string().matches(
+   const validateUrl = Yup.string().nullable().matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
       'Enter correct url!');
 
 
    const validationSchema = Yup.object({
       fullName: Yup.string().required('Required'),
-      aboutMe: Yup.string().required('Required'),
-      lookingForAJobDescription: Yup.string().required('Required'),
+      aboutMe: Yup.string().trim().nullable().required('Required'),
+      lookingForAJobDescription: Yup.string().nullable().trim('no spaces').required('Required'),
       contacts: Yup.object(
          Object.fromEntries(Object.entries(profileInfo.contacts).map(([key, value]) => [key, value = validateUrl]))
       )

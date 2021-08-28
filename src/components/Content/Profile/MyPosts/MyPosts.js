@@ -17,7 +17,7 @@ const MyPosts = React.memo(props => {
    }
 
    const validationSchema = yup.object({
-      post: yup.string().required()
+      post: yup.string().trim().required()
    })
    const postsElements =
       props.posts.map(p => <Post message={p.message} likes={p.likesCount} photos={props.photos} key={p.id} />)

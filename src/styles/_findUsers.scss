@@ -17,6 +17,7 @@
       justify-content: flex-start;
       gap: 20px;
       transition: transform 0.3s ease;
+      backface-visibility: hidden;
       &:hover {
          transform: scale(1.03);
       }
@@ -52,18 +53,22 @@
    }
 
    &__name {
+      display: inline-block;
       font-weight: bold;
       font-size: 15px;
       color: $dark;
-      width: 130px;
+      width: 125px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      &:hover {
+         text-decoration: underline;
+      }
    }
    &__status {
       font-size: 14px;
       color: $dark;
-      width: 130px;
+      width: 125px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -77,5 +82,6 @@
    display: grid;
    &__preloader {
       margin-bottom: 211px;
+      margin-top: 150px;
    }
 }

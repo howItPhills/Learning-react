@@ -1,10 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Cloud.module.css';
 import defaultPhoto from '../../assets/nophoto.png';
+import { useEffect } from 'react';
+import { connect } from 'react-redux'
+import { getProfileCloud } from "../../redux/profileReducer";
 
 
-const Cloud = ({ profileInfoCloud, isAuthorized }) => {
-   if (!profileInfoCloud || !isAuthorized) return <div className={styles.cloud}></div>
+const Cloud = ({ getProfileCloud, profileInfoCloud, authorizedId }) => {
+
+   useEffect(() => {
+      authorizedId && getProfileCloud(authorizedId);
+   }, [authorizedId])
+
+   if (!profileInfoCloud || !authorizedId) return <div className={styles.cloud}></div>
    return (
       <NavLink to='/profile' className={styles.cloud}>
          <div className={styles.photo}>
@@ -17,7 +25,12 @@ const Cloud = ({ profileInfoCloud, isAuthorized }) => {
    )
 }
 
+const mapStateToProps = (state) => {
+   return {
+      profileInfoCloud: state.profilePage.profileInfoCloud,
+      authorizedId: state.auth.id,
+   }
+}
 
 
-
-export default Cloud;
+export default connect(mapStateToProps, { getProfileCloud })(Cloud)

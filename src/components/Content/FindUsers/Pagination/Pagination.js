@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-let Pagination = React.memo((props) => {
+const Pagination = React.memo((props) => {
    const pageAmount = Math.ceil(props.totalItemsCount / props.pageSize); // number of all pages
 
    const pages = [];
@@ -10,33 +10,35 @@ let Pagination = React.memo((props) => {
       pages.push(i);
    }
 
+   const [currentPortionNumber, setPortionNumber] = useState(1);
+
+
    const portionCount = Math.ceil(pageAmount / props.portionSize) // number of all portions
-   const [currentPortionNumber, setPortionNumber] = useState(props.currentPortionNumber);
    const portionLeftBorder = (currentPortionNumber - 1) * props.portionSize + 1
    const portionRightBorder = currentPortionNumber * props.portionSize;
 
 
-   const onPageClick = (page, currentPortion) => {
+   const onPageClick = (page) => {
+      props.setCurrentPage(page)
       props.onPageChanged(page);
-      props.setCurrentPortionNumber(currentPortion);
    }
 
    return (
       <div className="pagination">
-         {currentPortionNumber > 1 && <button onClick={() => setPortionNumber(currentPortionNumber - 1)} className='pagination__prev'>prev</button>}
+         {currentPortionNumber > 1 && <button onClick={() => setPortionNumber(prevPortionNumber => prevPortionNumber - 1)} className='pagination__prev'>prev</button>}
          <div className="pagination__pages">
             {pages.filter(p => p >= portionLeftBorder && p <= portionRightBorder)
                .map((p) => (
                   <span
                      key={p}
                      className={props.currentPage === p ? "pagination__selected" : null}
-                     onClick={() => p !== props.currentPage && onPageClick(p, currentPortionNumber)}
+                     onClick={() => p !== props.currentPage && onPageClick(p)}
                   >
                      {p}
                   </span>
                ))}
          </div>
-         {currentPortionNumber < portionCount && <button onClick={() => setPortionNumber(currentPortionNumber + 1)} className='pagination__next'>next</button>}
+         {currentPortionNumber < portionCount && <button onClick={() => setPortionNumber(prevPortionNumber => prevPortionNumber + 1)} className='pagination__next'>next</button>}
       </div>
 
    )
