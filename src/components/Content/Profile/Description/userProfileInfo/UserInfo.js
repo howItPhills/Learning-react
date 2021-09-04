@@ -7,7 +7,7 @@ const UserInfo = ({ profileInfo, showFullName = false, ...props }) => {
                <span className={props.bold}>Full Name: </span> <span className={props.infoValue}>{profileInfo.fullName || 'no info'}</span>
             </div>
          }
-         <div className={props.infoItem}>
+         <div className={props.infoItem} >
             <span className={props.bold}>About me: </span><span className={props.infoValue}>{profileInfo.aboutMe || 'no info'}</span>
          </div>
          <div className={props.infoItem}>

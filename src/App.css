@@ -411,17 +411,11 @@ input[type="button"] {
       -ms-flex-pack: start;
           justify-content: flex-start;
   gap: 20px;
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 
 .users__wrapper:hover {
-  -webkit-transform: scale(1.03);
-          transform: scale(1.03);
+  -webkit-box-shadow: 0px 0px 10px #cac4c4;
+          box-shadow: 0px 0px 10px #cac4c4;
 }
 
 .users__user {
@@ -557,6 +551,10 @@ input[type="button"] {
 }
 
 .status {
+  display: inline-block;
+  max-width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
 }
 

@@ -23,16 +23,6 @@ export const authReducer = (state = inintialState, action) => {
             ...state,
             ...action.payload,
          }
-      // case SET_ERROR_MESSAGE:
-      //    return {
-      //       ...state,
-      //       errorMessage: action.errorMessage,
-      //    }
-      // case SET_CAPTCH_URL:
-      //    return {
-      //       ...state,
-      //       errorMessage: action.errorMessage,
-      //    }
       default:
          return state;
    }

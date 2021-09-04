@@ -1,8 +1,14 @@
+import { sendMessage } from '../../../redux/dialogsReducer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import withAuthRedirect from '../../../hoc/authHoc';
+import * as yup from 'yup';
 import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
-import * as yup from 'yup';
 import InputField from '../../../assets/functions/withFormikField'
+import { useEffect } from 'react';
+import { dalAPI } from '../../../API/DalApi';
 
 
 const Dialogs = (props) => {
@@ -43,4 +49,13 @@ const Dialogs = (props) => {
 }
 
 
-export default Dialogs;
+const mapStateToProps = (state) => {
+   return {
+      dialogs: state.dialogsPage.dialogs,
+      messages: state.dialogsPage.messages,
+   }
+}
+
+export default compose(withAuthRedirect, connect(mapStateToProps, {
+   sendMessage,
+}))(Dialogs);

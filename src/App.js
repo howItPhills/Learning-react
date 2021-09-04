@@ -13,7 +13,15 @@ import { initializeApp } from './redux/appReducer';
 const App = ({ initializeApp, isInitialized }) => {
 
   useEffect(() => {
-    initializeApp()
+    initializeApp();
+    window.addEventListener('unhandledrejection', event => {
+      alert(event.reason)
+    })
+    return () => {
+      window.removeEventListener('unhandledrejection', event => {
+        alert(event.reason)
+      })
+    }
   }, [])
 
 

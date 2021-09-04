@@ -9,21 +9,13 @@ const SettingsForm = ({ profileInfo, updateProfile, setEditMode }) => {
       lookingForAJob: profileInfo.lookingForAJob,
       lookingForAJobDescription: profileInfo.lookingForAJobDescription,
       fullName: profileInfo.fullName,
-      contacts: {
-         facebook: profileInfo.contacts.facebook,
-         website: profileInfo.contacts.website,
-         vk: profileInfo.contacts.vk,
-         twitter: profileInfo.contacts.twitter,
-         instagram: profileInfo.contacts.instagram,
-         youtube: profileInfo.contacts.youtube,
-         github: profileInfo.contacts.github,
-         mainLink: profileInfo.contacts.mainLink,
-      }
+      contacts: Object.fromEntries(Object.entries(profileInfo.contacts).map(([key, value]) => [key, value = '']))
    }
    const onSubmit = values => {
       updateProfile(values);
       setEditMode(false)
    }
+
    const validateUrl = Yup.string().nullable().matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
       'Enter correct url!');

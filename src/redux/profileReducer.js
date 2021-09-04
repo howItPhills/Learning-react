@@ -18,7 +18,7 @@ let initialState = {
    ],
    profileInfo: null,
    profileInfoCloud: null,
-   status: ''
+   status: '',
 }
 
 export const profileReducer = (state = initialState, action) => {

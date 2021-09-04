@@ -19,7 +19,7 @@ const Description = ({ updatePhoto, profileInfo, ...props }) => {
                   <label htmlFor="photo"><img src={uploadIcon} alt="uploadIcon" width='35' /></label>
                   <input type='file' onChange={onPhotoChange} name="photo" id='photo' />
                </div>}
-            <div>
+            <div className={styles.intro}>
                <div className={styles.name}>{profileInfo.fullName}</div>
                <Status status={props.status} updateStatus={props.updateStatus} isOwner={props.isOwner} />
             </div>

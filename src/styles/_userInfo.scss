@@ -18,6 +18,10 @@
 }
 
 .status {
+   display: inline-block;
+   max-width: 95%;
+   overflow: hidden;
+   text-overflow: ellipsis;
    cursor: pointer;
    &:hover {
       text-decoration: underline;

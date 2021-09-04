@@ -2,7 +2,6 @@ import { dalAPI } from "../API/DalApi";
 import { changeObjectInArray } from "../assets/functions/mapObject";
 
 const SET_TOTAL_USERS_COUNT = "findeUsers/SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = "findeUsers/TOGGLE_IS_FETCHING";
 const FOLLOWING_IN_PROGRESS = "findeUsers/FOLLOWING_IN_PROGRESS";
 const FOLLOW = "findeUsers/FOLLOW";
 const UNFOLLOW = "findeUsers/UNFOLLOW";
@@ -23,7 +22,13 @@ export const findUsersReducer = (state = inintialState, action) => {
       case FOLLOW: {
          return {
             ...state,
-            users: changeObjectInArray(state.users, 'id', action.userId, { followed: true })
+            // users: changeObjectInArray(state.users, 'id', action.userId, { followed: true })
+            users: state.users.map(u => {
+               if (u.id === action.userId) {
+                  return { ...u, followed: true }
+               }
+               return u;
+            })
          }
       }
       case UNFOLLOW: {
@@ -32,12 +37,17 @@ export const findUsersReducer = (state = inintialState, action) => {
             users: changeObjectInArray(state.users, 'id', action.userId, { followed: false })
          }
       }
-      case SET_USERS:
-      case SET_TOTAL_USERS_COUNT:
-      case TOGGLE_IS_FETCHING: {
+      // case SET_USERS:
+      case SET_TOTAL_USERS_COUNT: {
          return {
             ...state,
             ...action.payload
+         }
+      }
+      case SET_USERS: {
+         return {
+            ...state,
+            users: [...action.users]
          }
       }
       case FOLLOWING_IN_PROGRESS: {
@@ -53,17 +63,15 @@ export const findUsersReducer = (state = inintialState, action) => {
 
 export const follow = (userId) => ({ type: FOLLOW, userId });
 export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
-export const setUsers = (users) => ({ type: SET_USERS, payload: { users } });
+// export const setUsers = (users) => ({ type: SET_USERS, payload: { users } });
+export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, payload: { totalUsersCount } });
-export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, payload: { isFetching } });
 export const checkFollowInProgress = (isFetching, id) => ({ type: FOLLOWING_IN_PROGRESS, isFetching, id });
 
 
 
 const getUsersHandler = async (pageNumber, pageSize, dispatch, isTotalCountNeeded = false) => {
-   dispatch(toggleIsFetching(true));
    const data = await dalAPI.getUsers(pageNumber, pageSize);
-   dispatch(toggleIsFetching(false));
    dispatch(setUsers(data.items));
    isTotalCountNeeded && dispatch(setTotalUsersCount(data.totalCount));
 }
@@ -75,7 +83,6 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 export const onPageChanged = (currentPage, pageSize) => async (dispatch) => {
    getUsersHandler(currentPage, pageSize, dispatch);
 }
-
 
 const followUnfollowFlow = async (dispatch, id, dalMethod, actionCreator) => {
    dispatch(checkFollowInProgress(true, id))

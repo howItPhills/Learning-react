@@ -31,7 +31,7 @@ const MyPosts = React.memo(props => {
             <InputField initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} type='text' name='post' as='textarea' placeholder='Write your thoughts...' />
          </div>
          {postsElements}
-      </div>
+      </div >
    )
 });
 
