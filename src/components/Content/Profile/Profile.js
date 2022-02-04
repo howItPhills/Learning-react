@@ -1,73 +1,62 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import Preloader from "../../../common/preloader";
+import { useEffect } from "react";
+import { createStructuredSelector } from "reselect";
 import withAuthRedirect from "../../../hoc/authHoc";
-import { getFriends, getPosts } from "../../../redux/profile-selectors";
+
+import { selectProfileInfo } from "../../../redux/profile/profile.selectors";
+import { selectAuthorizedId } from "../../../redux/auth.selectors";
+
 import {
-   addPost,
    getProfile,
-   getStatus,
-   updateStatus,
-   updatePhoto,
    setProfile,
-} from "../../../redux/profile/profileReducer";
-import styles from './Profile.module.css';
+   getStatus,
+} from "../../../redux/profile/profile.actions";
+
 import Description from './Description/Description.js';
 import MyPosts from './MyPosts/MyPosts';
-import { useEffect } from "react";
 
+import Preloader from "../../../common/preloader";
 
-const Profile = (props) => {
+import styles from './Profile.module.css';
+
+const Profile = ({ match, authorizedId, getProfile, profileInfo, getStatus }) => {
 
    useEffect(() => {
-      let userId = props.match.params.userId;
+      let { userId } = match.params
       if (!userId) {
-         userId = props.authorizedId;
+         userId = authorizedId;
       }
-      props.getProfile(userId);
-      props.getStatus(userId);
+      getProfile(userId);
+      getStatus(userId);
       return () => {
-         props.setProfile(null)
+         setProfile(null)
       }
-   }, [props.match.params.userId])
+   }, [match.params, getProfile, getStatus, authorizedId])
 
-   if (!props.profileInfo) return <Preloader />
+   if (!profileInfo) return <Preloader />
    return (
       <div className={styles.content} >
          <Description
-            updatePhoto={props.updatePhoto}
-            isOwner={!props.match.params.userId}
-            profileInfo={props.profileInfo}
-            status={props.status}
-            updateStatus={props.updateStatus}
+            isOwner={!match.params.userId}
+            profileInfo={profileInfo}
          />
          <MyPosts
-            posts={props.posts}
-            addPost={props.addPost}
-            photos={props.profileInfo.photos}
+            photos={profileInfo.photos}
          />
       </div >
    )
 }
 
-
-const MapStateToProps = (state) => {
-   return {
-      posts: getPosts(state),
-      friends: getFriends(state),
-      profileInfo: state.profilePage.profileInfo,
-      status: state.profilePage.status,
-      authorizedId: state.auth.id,
-   };
-};
+const MapStateToProps = createStructuredSelector({
+   profileInfo: selectProfileInfo,
+   authorizedId: selectAuthorizedId,
+});
 
 
-export default compose(withAuthRedirect, connect(MapStateToProps, {
-   addPost,
+export default compose(connect(MapStateToProps, {
    getProfile,
-   getStatus,
-   updateStatus,
-   updatePhoto,
    setProfile,
-}), withRouter)(Profile)
+   getStatus,
+}), withAuthRedirect, withRouter)(Profile)

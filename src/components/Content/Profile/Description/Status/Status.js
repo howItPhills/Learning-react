@@ -1,36 +1,41 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { updateStatus } from '../../../../../redux/profile/profile.actions';
+import { setStatus } from '../../../../../redux/profile/profile.actions';
+import { selectStatus } from '../../../../../redux/profile/profile.selectors';
 
-const Status = React.memo((props) => {
+
+
+const Status = ({ isOwner }) => {
+
+   const dispatch = useDispatch()
+   const status = useSelector(selectStatus)
 
    const [isEditing, setEditMode] = useState(false);
-   const [status, setStatus] = useState(props.status);
-
-
-   useEffect(() => {
-      setStatus(props.status)
-   }, [props.status])
 
    const openEditMode = () => {
-      props.isOwner && setEditMode(true);
+      if (isOwner) {
+         setEditMode(true);
+      }
    }
 
    const closeEditMode = () => {
       setEditMode(false);
-      props.updateStatus(status)
+      dispatch(updateStatus(status))
    }
 
    const onStatusChange = (e) => {
-      setStatus(e.currentTarget.value)
+      dispatch(setStatus(e.target.value));
    }
 
    return (
       <div>
-         {!isEditing ?
-            <span onClick={openEditMode} className={props.isOwner ? 'status' : null}>{props.status || '...'}</span> :
-            <input autoFocus={true} onBlur={closeEditMode} value={status} onChange={onStatusChange} />}
+         {isEditing ?
+            <input autoFocus={true} onBlur={closeEditMode} value={status} onChange={onStatusChange} /> :
+            <span onClick={openEditMode} className={isOwner ? 'status' : null}>{status || '...'}</span>
+         }
       </div >
    )
-})
+}
 
 export default Status

@@ -1,12 +1,10 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { authReducer } from './authReducer';
-import { dialogsReducer } from './dialogsReducer';
-import { findUsersReducer } from './findUsersReducer';
-import { profileReducer } from './profile/profileReducer';
-import ThunkMiddleWare from 'redux-thunk';
-import { appReducer } from './appReducer';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, applyMiddleware } from 'redux';
+
 import { rootReducer } from './root-reducer';
+
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import ThunkMiddleWare from 'redux-thunk';
 
 
 let store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ThunkMiddleWare)));

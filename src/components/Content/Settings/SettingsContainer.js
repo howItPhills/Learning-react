@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { getProfile, updateProfile } from "../../../redux/profileReducer";
+import { getProfile, updateProfile } from "../../../redux/profile.reducer";
 import Preloader from '../../../common/preloader';
 import Settings from './Settings';
 import { Redirect } from 'react-router-dom';

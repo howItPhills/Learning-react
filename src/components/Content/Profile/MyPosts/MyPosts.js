@@ -1,18 +1,24 @@
+import { selectPosts } from '../../../../redux/profile/profile.selectors';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from 'react';
 import InputField from '../../../../assets/functions/withFormikField';
+import { addPost } from '../../../../redux/profile/profile.actions';
 
 
-const MyPosts = React.memo(props => {
+const MyPosts = React.memo(({ photos }) => {
+
+   const dispatch = useDispatch()
+   const posts = useSelector(selectPosts)
 
    const initialValues = {
       post: '',
    }
 
    const onSubmit = (values, { resetForm }) => {
-      props.addPost(values.post);
+      dispatch(addPost(values.post));
       resetForm(initialValues);
    }
 
@@ -20,7 +26,7 @@ const MyPosts = React.memo(props => {
       post: yup.string().trim().required()
    })
    const postsElements =
-      props.posts.map(p => <Post message={p.message} likes={p.likesCount} photos={props.photos} key={p.id} />)
+      posts.map(p => <Post message={p.message} likes={p.likesCount} photos={photos} key={p.id} />)
 
    return (
       <div className={styles.wrapper}>

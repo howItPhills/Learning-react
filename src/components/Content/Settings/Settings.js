@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getProfile, setProfile, updateProfile } from "../../../redux/profile/profileReducer";
+import { getProfile, setProfile, updateProfile } from "../../../redux/profile/profile.actions";
 import Preloader from '../../../common/preloader';
 import { Redirect } from 'react-router-dom';
 import { useEffect } from 'react';

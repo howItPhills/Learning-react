@@ -1,5 +1,5 @@
 import { dialogsReducer } from "./dialogsReducer";
-import { profileReducer } from "./profileReducer";
+import { profile.reducer } from "./profile.reducer";
 
 let store = {
    _state: {
@@ -44,7 +44,7 @@ let store = {
    },
    dispatch(action) {
       this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-      this._state.profilePage = profileReducer(this._state.profilePage, action);
+      this._state.profilePage = profile.reducer(this._state.profilePage, action);
       this._rerenderEntireTree(this._state);
    }
 };

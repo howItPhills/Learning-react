@@ -3,7 +3,7 @@ import styles from './Cloud.module.css';
 import defaultPhoto from '../../assets/nophoto.png';
 import { useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getProfileCloud } from "../../redux/profileReducer";
+import { getProfileCloud } from "../../redux/profile/profile.actions";
 
 
 const Cloud = ({ getProfileCloud, profileInfoCloud, authorizedId }) => {
