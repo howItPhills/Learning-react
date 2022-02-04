@@ -1,11 +1,32 @@
-.dialog:not(:last-child) {
+.dialog {
+   display: flex;
+   border: 1px solid rgb(202, 196, 196);
+   box-shadow: 0px 0px 2px rgb(202, 196, 196);
+   border-radius: 10px;
    margin-bottom: 30px;
+   padding: 5px 0 5px 5px;
+   align-items: center;
+   transition: all 0.2s ease;
+}
+.dialog:hover {
+   box-shadow: 0px 0px 10px rgb(202, 196, 196);
 }
 
-.dialog a {
-   text-decoration: none;
-   text-transform: uppercase;
-   color: rgb(38, 136, 103);
+.photo {
+   width: 60px;
+   height: 60px;
+   margin-right: 15px;
+}
+.name {
    font-weight: bold;
-   font-size: 15px;
+   color: rgb(97, 91, 91);
+   margin-bottom: 7px;
+}
+.lastMessage {
+   color: rgb(69, 79, 85);
+   opacity: 0.7;
+   width: 200px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }

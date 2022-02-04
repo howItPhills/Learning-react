@@ -22,7 +22,7 @@ const App = ({ initializeApp, isInitialized }) => {
         alert(event.reason)
       })
     }
-  }, [])
+  }, [initializeApp])
 
 
   if (!isInitialized) return <div className="app-preloader"><Preloader /></div >

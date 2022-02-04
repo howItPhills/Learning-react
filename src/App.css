@@ -502,6 +502,7 @@ input[type="button"] {
 
 .error {
   color: red;
+  text-align: center;
 }
 
 .email,
@@ -523,6 +524,9 @@ input[type="button"] {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .fieldWrapper input,
@@ -622,8 +626,8 @@ input[type="button"] {
   margin: 0 auto;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 0.1fr 55px 1fr;
-      grid-template-rows: 0.1fr 55px 1fr;
+  -ms-grid-rows: 70px 55px 1fr;
+      grid-template-rows: 70px 55px 1fr;
   -ms-grid-columns: 1fr 5.5fr;
       grid-template-columns: 1fr 5.5fr;
       grid-template-areas: "h h" "cl c" "n c";

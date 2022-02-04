@@ -11,7 +11,7 @@ import {
    updateStatus,
    updatePhoto,
    setProfile,
-} from "../../../redux/profileReducer";
+} from "../../../redux/profile/profileReducer";
 import styles from './Profile.module.css';
 import Description from './Description/Description.js';
 import MyPosts from './MyPosts/MyPosts';

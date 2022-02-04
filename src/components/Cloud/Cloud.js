@@ -10,7 +10,7 @@ const Cloud = ({ getProfileCloud, profileInfoCloud, authorizedId }) => {
 
    useEffect(() => {
       authorizedId && getProfileCloud(authorizedId);
-   }, [authorizedId])
+   }, [authorizedId, getProfileCloud])
 
    if (!profileInfoCloud || !authorizedId) return <div className={styles.cloud}></div>
    return (

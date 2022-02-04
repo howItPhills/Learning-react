@@ -2,15 +2,14 @@ const ADDMESSAGE = 'ADD-MESSAGE';
 
 let inintialState = {
    dialogs: [
-      { id: '1', name: 'Igor' },
-      { id: '2', name: 'Lena' },
-      { id: '3', name: 'Vasya' },
-      { id: '4', name: 'Katya' },
+      { id: '1', name: 'Igor', photo: null, 'last message': 'hi' },
+      { id: '2', name: 'Lena', photo: null, 'last message': 'no' },
    ],
-   messages: [
-      { id: '1', message: "whats upp" },
-      { id: '2', message: "hi" },
-      { id: '3', message: "how old are u my friend" },
+   postedMessages: [
+      { id: '1', message: "hi" },
+   ],
+   recievedMessages: [
+      { id: '1', message: "hello" },
    ],
 }
 
@@ -23,7 +22,7 @@ export const dialogsReducer = (state = inintialState, action) => {
          }
          return {
             ...state,
-            messages: [...state.messages, newMessage],
+            postedMessages: [...state.postedMessages, newMessage],
          };
       }
       default:
