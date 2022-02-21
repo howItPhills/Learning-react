@@ -1,7 +1,8 @@
-import { dalAPI } from "../API/DalApi";
-import { changeObjectInArray } from "../assets/functions/mapObject";
+import { dalAPI } from "../../API/DalApi";
+import { changeObjectInArray } from "../../assets/functions/mapObject";
 
 const SET_TOTAL_USERS_COUNT = "findeUsers/SET_TOTAL_USERS_COUNT";
+const SET_CURRENT_PAGE = "findeUsers/SET_CURRENT_PAGE";
 const FOLLOWING_IN_PROGRESS = "findeUsers/FOLLOWING_IN_PROGRESS";
 const FOLLOW = "findeUsers/FOLLOW";
 const UNFOLLOW = "findeUsers/UNFOLLOW";
@@ -14,6 +15,7 @@ let inintialState = {
    isFetching: false,
    followInProgress: [],
    portionSize: 10,
+   currentPortionNumber: 1,
 }
 
 export const findUsersReducer = (state = inintialState, action) => {
@@ -22,13 +24,13 @@ export const findUsersReducer = (state = inintialState, action) => {
       case FOLLOW: {
          return {
             ...state,
-            // users: changeObjectInArray(state.users, 'id', action.userId, { followed: true })
-            users: state.users.map(u => {
-               if (u.id === action.userId) {
-                  return { ...u, followed: true }
-               }
-               return u;
-            })
+            users: changeObjectInArray(state.users, 'id', action.userId, { followed: true })
+            // users: state.users.map(u => {
+            //    if (u.id === action.userId) {
+            //       return { ...u, followed: true }
+            //    }
+            //    return u;
+            // })
          }
       }
       case UNFOLLOW: {
@@ -37,11 +39,16 @@ export const findUsersReducer = (state = inintialState, action) => {
             users: changeObjectInArray(state.users, 'id', action.userId, { followed: false })
          }
       }
-      // case SET_USERS:
       case SET_TOTAL_USERS_COUNT: {
          return {
             ...state,
             ...action.payload
+         }
+      }
+      case SET_CURRENT_PAGE: {
+         return {
+            ...state,
+            currentPage: action.payload
          }
       }
       case SET_USERS: {
@@ -63,11 +70,10 @@ export const findUsersReducer = (state = inintialState, action) => {
 
 export const follow = (userId) => ({ type: FOLLOW, userId });
 export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
-// export const setUsers = (users) => ({ type: SET_USERS, payload: { users } });
+export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, payload: page })
 export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, payload: { totalUsersCount } });
 export const checkFollowInProgress = (isFetching, id) => ({ type: FOLLOWING_IN_PROGRESS, isFetching, id });
-
 
 
 const getUsersHandler = async (pageNumber, pageSize, dispatch, isTotalCountNeeded = false) => {

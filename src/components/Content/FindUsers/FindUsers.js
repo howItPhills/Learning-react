@@ -1,70 +1,46 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+
 import Pagination from "./Pagination/Pagination";
 import Preloader from "../../../common/preloader";
 import defaultPhoto from "./../../../assets/nophoto.png";
-import { dalAPI } from "../../../API/DalApi";
 
 
-const FindUsers = () => {
+
+
+const FindUsers = ({
+  getUsers,
+  users,
+  setUsers,
+  followInProgress,
+  totalUsersCount,
+  pageSize,
+  currentPortionNumber,
+  portionSize,
+  following,
+  unfollowing
+}) => {
+
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [totalUsersCount, setTotalUsersCount] = useState(0)
-  const [pageSize, setPageSize] = useState(9)
-  const [users, setUsers] = useState([])
+
 
   useEffect(() => {
-    dalAPI.getUsers(currentPage, pageSize)
-      .then(data => {
-        setUsers([...data.items])
-        setTotalUsersCount(data.totalCount)
-      })
-  }, [currentPage, pageSize, totalUsersCount]);
-
-
-  const [followInProgress, setFollowInProgress] = useState([])
-
-  const followUnfollowFlow = async (userId, dalMethod, flag = false) => {
-    setFollowInProgress([...followInProgress, userId])
-    const res = await dalMethod(userId);
-    if (res.resultCode === 0) {
-      setFollowInProgress(
-        followInProgress.filter(id => id !== userId)
-      )
-      setUsers(
-        users.map(user => {
-          if (user.id === userId) return { ...user, followed: flag }
-          return user
-        })
-      )
+    getUsers(currentPage, pageSize);
+    return () => {
+      setUsers([])
     }
-  }
 
-  const following = async (id) => {
-    followUnfollowFlow(id, dalAPI.followUser.bind(dalAPI), true)
-  }
-
-  const unfollowing = async (id) => {
-    followUnfollowFlow(id, dalAPI.unfollowUser.bind(dalAPI))
-  }
-
-  // useEffect(() => {
-  //   props.getUsers(currentPage, props.pageSize)
-  //   return () => {
-  //     props.setUsers([])
-  //   }
-  // }, [])
-
-  // const onPageChanged = (pageNumber) => {
-  //   props.onPageChanged(pageNumber, props.pageSize);
-  // };
+  }, [currentPage, pageSize, setUsers, getUsers]);
 
   return (
     <div className="findusers">
       {users.length === 0 ?
-        <div className="findusers__preloader"><Preloader /></div> : // Preloader is here to prevent pagination from rerendering
+        <div className="findusers__preloader">
+          <Preloader />
+        </div>
+        : // Preloader is here to prevent pagination from rerendering
         <div className="users" >
           {users.map((u) => (
             <div className="users__wrapper" key={u.id}>
@@ -102,6 +78,8 @@ const FindUsers = () => {
           currentPage={currentPage}
           totalItemsCount={totalUsersCount}
           setCurrentPage={setCurrentPage}
+          portionSize={portionSize}
+          currentPortionNumber={currentPortionNumber}
         />
       </div>
     </div>

@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from "react";
 
-const Pagination = React.memo((props) => {
+const Pagination = React.memo(({ currentPage, pageSize, totalItemsCount, currentPortionNumber, portionSize, setPortionNumber, setCurrentPage }) => {
 
-   const pageAmount = Math.ceil(props.totalItemsCount / props.pageSize); // number of all pages
+   const pageAmount = Math.ceil(totalItemsCount / pageSize); // number of all pages
 
    const pages = [];
 
@@ -11,19 +10,14 @@ const Pagination = React.memo((props) => {
       pages.push(i);
    }
 
-   const [currentPortionNumber, setPortionNumber] = useState(1);
-   const [portionSize, setPortonSize] = useState(10)
+   // const [currentPortionNumber, setPortionNumber] = useState(1);
+   // const [portionSize, setPortonSize] = useState(10)
 
 
    const portionCount = Math.ceil(pageAmount / portionSize) // number of all portions
    const portionLeftBorder = (currentPortionNumber - 1) * portionSize + 1
    const portionRightBorder = currentPortionNumber * portionSize;
 
-
-   const onPageClick = (page) => {
-      props.setCurrentPage(page)
-      // props.onPageChanged(page);
-   }
 
    return (
       <div className="pagination">
@@ -33,8 +27,8 @@ const Pagination = React.memo((props) => {
                .map((p) => (
                   <span
                      key={p}
-                     className={props.currentPage === p ? "pagination__selected" : null}
-                     onClick={() => p !== props.currentPage && onPageClick(p)}
+                     className={currentPage === p ? "pagination__selected" : null}
+                     onClick={() => p !== currentPage && setCurrentPage(p)}
                   >
                      {p}
                   </span>

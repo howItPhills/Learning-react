@@ -22,7 +22,7 @@ import Preloader from "../../../common/preloader";
 
 import styles from './Profile.module.css';
 
-const Profile = ({ match, authorizedId, getProfile, profileInfo, getStatus }) => {
+const Profile = ({ match, setProfile, authorizedId, getProfile, profileInfo, getStatus }) => {
 
    useEffect(() => {
       let { userId } = match.params
@@ -34,7 +34,7 @@ const Profile = ({ match, authorizedId, getProfile, profileInfo, getStatus }) =>
       return () => {
          setProfile(null)
       }
-   }, [match.params, getProfile, getStatus, authorizedId])
+   }, [match.params, setProfile, getProfile, getStatus, authorizedId])
 
    return (
       <>
