@@ -1,12 +1,3 @@
-// import { compose } from "redux";
-// import { connect } from "react-redux";
-// import {
-//   getUsers,
-//   onPageChanged,
-//   unfollowing,
-//   following,
-//   setUsers,
-// } from "../../../redux/findUsersReducer";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -22,14 +13,14 @@ const FindUsers = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalUsersCount, setTotalUsersCount] = useState(0)
   const [pageSize, setPageSize] = useState(9)
-
-
   const [users, setUsers] = useState([])
+
   useEffect(() => {
-    dalAPI.getUsers(currentPage, pageSize).then(data => {
-      setUsers([...data.items])
-      setTotalUsersCount(data.totalCount)
-    })
+    dalAPI.getUsers(currentPage, pageSize)
+      .then(data => {
+        setUsers([...data.items])
+        setTotalUsersCount(data.totalCount)
+      })
   }, [currentPage, pageSize, totalUsersCount]);
 
 
@@ -111,31 +102,10 @@ const FindUsers = () => {
           currentPage={currentPage}
           totalItemsCount={totalUsersCount}
           setCurrentPage={setCurrentPage}
-        // onPageChanged={onPageChanged}
         />
       </div>
     </div>
   )
 }
-
-
-// const mapStateToProps = (state) => {
-//   return {
-//     users: state.findUsersPage.users,
-//     pageSize: state.findUsersPage.pageSize,
-//     totalUsersCount: state.findUsersPage.totalUsersCount,
-//     portionSize: state.findUsersPage.portionSize,
-//     followInProgress: state.findUsersPage.followInProgress,
-//   };
-// };
-
-
-// export default compose(connect(mapStateToProps, {
-//   onPageChanged,
-//   getUsers,
-//   unfollowing,
-//   following,
-//   setUsers,
-// }))(FindUsers)
 
 export default FindUsers

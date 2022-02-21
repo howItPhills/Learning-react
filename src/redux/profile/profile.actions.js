@@ -1,6 +1,7 @@
 import { dalAPI } from "../../API/DalApi";
 import profileActionTypes from "./profile.types";
 
+
 // ACTION_CREATORS
 export const addPost = (post) => ({ type: profileActionTypes.ADD_POST, payload: post });
 export const setProfile = (profileInfo) => ({ type: profileActionTypes.SET_PROFILE, payload: { profileInfo } });
@@ -18,7 +19,7 @@ const getProfileBody = async (id, actionCreator, dispatch) => {
 }
 
 export const getProfile = (userId) => async (dispatch) => {
-   getProfileBody(userId, setProfile, dispatch)
+   getProfileBody(userId, setProfile, dispatch);
 }
 export const getProfileCloud = (authorizedId) => async (dispatch) => {
    getProfileBody(authorizedId, setProfileCloud, dispatch)

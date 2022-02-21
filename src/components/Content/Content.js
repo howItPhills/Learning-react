@@ -10,7 +10,7 @@ const Content = () => {
 
   return (
     <div className='app-wrapper-content'>
-      <Route exact path='/Learning-react' render={() => <Redirect to="/profile" />} />
+      <Route exact path='/' render={() => <Redirect to="/profile" />} />
       <Route path='/profile/:userId?' render={() => <Profile />} />
       <Route path='/dialogs/:userId?' render={() => <Dialogs />} />
       <Route path='/settings' render={() => <Settings />} />

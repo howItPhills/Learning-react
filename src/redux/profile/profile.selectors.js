@@ -27,3 +27,8 @@ export const selectStatus = createSelector(
    [selectProfile],
    profilePage => profilePage.status
 )
+
+export const selectIsFetching = createSelector(
+   [selectProfile],
+   profilePage => profilePage.isFetching
+)

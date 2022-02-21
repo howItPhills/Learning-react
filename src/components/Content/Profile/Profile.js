@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { createStructuredSelector } from "reselect";
 import withAuthRedirect from "../../../hoc/authHoc";
 
+
 import { selectProfileInfo } from "../../../redux/profile/profile.selectors";
 import { selectAuthorizedId } from "../../../redux/auth.selectors";
 
@@ -35,17 +36,21 @@ const Profile = ({ match, authorizedId, getProfile, profileInfo, getStatus }) =>
       }
    }, [match.params, getProfile, getStatus, authorizedId])
 
-   if (!profileInfo) return <Preloader />
    return (
-      <div className={styles.content} >
-         <Description
-            isOwner={!match.params.userId}
-            profileInfo={profileInfo}
-         />
-         <MyPosts
-            photos={profileInfo.photos}
-         />
-      </div >
+      <>
+         {profileInfo ?
+            <div className={styles.content} >
+               <Description
+                  isOwner={!match.params.userId}
+                  profileInfo={profileInfo}
+               />
+               <MyPosts
+                  photos={profileInfo.photos}
+               />
+            </div > :
+            <Preloader />
+         }
+      </>
    )
 }
 

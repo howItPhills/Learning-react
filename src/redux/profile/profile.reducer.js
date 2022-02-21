@@ -6,6 +6,7 @@ let initialState = {
    profileInfo: null,
    profileInfoCloud: null,
    status: '',
+   isFetching: false
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -14,7 +15,7 @@ export const profileReducer = (state = initialState, action) => {
          const newPost = {
             id: 5,
             message: action.payload,
-            likesCount: 2,
+            likesCount: 0,
          }
          return {
             ...state,
