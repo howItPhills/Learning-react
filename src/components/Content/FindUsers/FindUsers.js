@@ -8,7 +8,6 @@ import defaultPhoto from "./../../../assets/nophoto.png";
 
 
 
-
 const FindUsers = ({
   getUsers,
   users,
@@ -74,10 +73,10 @@ const FindUsers = ({
         </div>}
       <div className='users__pagination'>
         <Pagination
-          pageSize={pageSize}
           currentPage={currentPage}
-          totalItemsCount={totalUsersCount}
           setCurrentPage={setCurrentPage}
+          pageSize={pageSize}
+          totalItemsCount={totalUsersCount}
           portionSize={portionSize}
           currentPortionNumber={currentPortionNumber}
         />

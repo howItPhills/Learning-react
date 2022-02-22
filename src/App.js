@@ -1,19 +1,25 @@
-import React from 'react';
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import './App.css';
-import Preloader from './common/preloader';
+import { useSelector, useDispatch } from 'react-redux';
+
 import Cloud from './components/Cloud/Cloud';
 import Content from './components/Content/Content'
 import Header from './components/Header/Header';
 import Nav from './components/Navbar/Nav';
-import { initializeApp } from './redux/appReducer';
+import Preloader from './common/preloader';
+
+import './App.css';
+
+import { initializeApp } from './redux/app/appReducer';
+import { selectIsInitialized } from './redux/app/app.selectors';
 
 
-const App = ({ initializeApp, isInitialized }) => {
+const App = () => {
+
+  const isInitialized = useSelector(selectIsInitialized)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    initializeApp();
+    dispatch(initializeApp());
     window.addEventListener('unhandledrejection', event => {
       alert(event.reason)
     })
@@ -22,22 +28,24 @@ const App = ({ initializeApp, isInitialized }) => {
         alert(event.reason)
       })
     }
-  }, [initializeApp])
+  }, [dispatch])
 
 
-  if (!isInitialized) return <div className="app-preloader"><Preloader /></div >
   return (
-    <div className='app-wrapper'>
-      <Header />
-      <Nav />
-      <Content />
-      <Cloud />
-    </div>
+    <>
+      {
+        isInitialized ?
+          <div className='app-wrapper'>
+            <Header />
+            <Nav />
+            <Content />
+            <Cloud />
+          </div> :
+          <div className="app-preloader"><Preloader /></div >
+      }
+    </>
+
   )
 }
 
-const mapDispatchToProps = (state) => ({
-  isInitialized: state.app.isInitialized
-})
-
-export default connect(mapDispatchToProps, { initializeApp })(App);
+export default App;

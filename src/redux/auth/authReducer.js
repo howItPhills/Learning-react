@@ -1,5 +1,5 @@
 import { Redirect } from "react-router-dom";
-import { dalAPI } from "../API/DalApi";
+import { dalAPI } from "../../API/DalApi";
 
 const SET_USERS_AUTH = 'auth/SET_USERS_AUTH';
 const SET_ERROR_MESSAGE = 'auth/SET_ERROR_MESSAGE';

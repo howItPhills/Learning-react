@@ -7,7 +7,7 @@ import withAuthRedirect from "../../../hoc/authHoc";
 
 
 import { selectProfileInfo } from "../../../redux/profile/profile.selectors";
-import { selectAuthorizedId } from "../../../redux/auth.selectors";
+import { selectAuthorizedId } from "../../../redux/auth/auth.selectors";
 
 import {
    getProfile,

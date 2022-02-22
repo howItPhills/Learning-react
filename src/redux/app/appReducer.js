@@ -1,4 +1,4 @@
-import { checkAuthData } from "./authReducer";
+import { checkAuthData } from "../auth/authReducer";
 
 const SUCCESSFULL_INITIALIZATION = 'app/SUCCESSFULL_INITIALIZATION';
 

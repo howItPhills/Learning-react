@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import logo from '../../assets/logos/logo.jpg';
 import { connect } from 'react-redux';
-import { logout } from "../../redux/authReducer";
+import { logout } from "../../redux/auth/authReducer";
 
 
 
